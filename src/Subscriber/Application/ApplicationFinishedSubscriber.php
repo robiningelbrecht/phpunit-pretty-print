@@ -19,10 +19,14 @@ final class ApplicationFinishedSubscriber implements FinishedSubscriber
 
     public function notify(Finished $event): void
     {
-        render(sprintf('Tests: %s', State::getTotalTestCount()));
-        render(sprintf('%s passed', State::getTotalTestPassedCount()));
-        render(sprintf('Assertions: %s', State::getTotalAssertionCount()));
-        render(sprintf('Duration: %ss', round($event->telemetryInfo()->durationSinceStart()->asFloat(), 3)));
+        render(sprintf('<div>Tests:%s%s, <span class="text-green font-bold">%s passed</span>, <span class="text-red font-bold">%s failed</span> (%s assertions)</div>',
+            str_repeat('&nbsp;', 4),
+            State::getTotalTestCount(),
+            State::getTotalTestPassedCount(),
+            State::getTotalTestFailedCount(),
+            State::getTotalAssertionCount()
+        ));
+        render(sprintf('<div>Duration: %ss</div>', round($event->telemetryInfo()->durationSinceStart()->asFloat(), 3)));
 
         if (!$this->configuration->displayQuotesForName() || !$this->configuration->getNameToUseInQuotes()) {
             return;

@@ -22,7 +22,5 @@ Tests\ExampleTests\TestThatPassesTest, 2 tests
 ✓ do basic assertions [DURATION-IN-SECONDS]
 ✓ do some more assertions [DURATION-IN-SECONDS]
 
-Tests: 16
-12 passed
-Assertions: 14
+Tests:    16, 12 passed, 1 failed (14 assertions)
 Duration: DURATION-IN-SECONDS
