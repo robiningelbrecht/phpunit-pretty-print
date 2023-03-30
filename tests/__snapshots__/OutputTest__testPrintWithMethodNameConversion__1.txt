@@ -1,0 +1,28 @@
+
+Runtime:       PHPUnit SOME-PHPUNIT-VERSION using PHP SOME-PHP-VERSION (cli) on SOME-OS
+Configuration: tests/phpunit.test-with-method-name-conversion.xml
+
+Tests\ExampleTests\TestThatHasAllStatusesTest, 14 tests
+✓ success [DURATION-IN-SECONDS]
+⨯ fail [DURATION-IN-SECONDS]
+⨯ error [DURATION-IN-SECONDS]
+✓ risky [DURATION-IN-SECONDS]
+! skip [DURATION-IN-SECONDS]
+! incomplete [DURATION-IN-SECONDS]
+✓ should convert title case to lower cased words [DURATION-IN-SECONDS]
+✓ should convert snake case to lower cased words [DURATION-IN-SECONDS]
+✓ can contain 1 or 99 numbers [DURATION-IN-SECONDS]
+✓ 123 can start or end with numbers 456 [DURATION-IN-SECONDS]
+✓ should preserve and pa tia pita zed words [DURATION-IN-SECONDS]
+✓ with named datasets with data set [DURATION-IN-SECONDS]
+✓ with named datasets with data set data set 2 [DURATION-IN-SECONDS]
+✓ with named datasets with data set set 3 [DURATION-IN-SECONDS]
+
+Tests\ExampleTests\TestThatPassesTest, 2 tests
+✓ do basic assertions [DURATION-IN-SECONDS]
+✓ do some more assertions [DURATION-IN-SECONDS]
+
+Tests: 16
+12 passed
+Assertions: 14
+Duration: DURATION-IN-SECONDS

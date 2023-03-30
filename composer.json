@@ -1,31 +1,42 @@
 {
-    "name": "robiningelbrecht/phpunit-pretty-print",
-    "description": "Prettify PHPUnit output",
-      "keywords": [
-        "Testing",
-        "PHP",
-        "phpunit"
-      ],    
-    "type": "library",
-    "license": "MIT",
-    "authors": [
-      {
-        "name": "Robin Ingelbrecht",
-        "email": "ingelbrecht_robin@hotmail.com"
-      }
-    ],
-    "require": {
-        "php": "^8.1 || ^8.2",
-        "phpunit/phpunit": "^10"
-    },
-    "autoload": {
-        "psr-4": {
-            "RobinIngelbrecht\\PHPUnitPrettyPrint\\": "src/"
-        }
-    },
-    "autoload-dev": {
-      "psr-4": {
-        "Tests\\": "tests/"
-      }
+  "name": "robiningelbrecht/phpunit-pretty-print",
+  "description": "Prettify PHPUnit output",
+  "keywords": [
+    "Testing",
+    "PHP",
+    "phpunit"
+  ],
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Robin Ingelbrecht",
+      "email": "ingelbrecht_robin@hotmail.com"
+    }
+  ],
+  "require": {
+    "php": "^8.1 || ^8.2",
+    "phpunit/phpunit": "^10",
+    "nunomaduro/termwind": "^1.15"
   },
+  "autoload": {
+    "psr-4": {
+      "RobinIngelbrecht\\PHPUnitPrettyPrint\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^3.15",
+    "spatie/phpunit-snapshot-assertions": "^5.0"
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "scripts": {
+    "lint:fix": " ./vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php"
+  }
 }

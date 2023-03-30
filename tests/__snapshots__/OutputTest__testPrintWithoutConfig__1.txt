@@ -1,0 +1,28 @@
+
+Runtime:       PHPUnit SOME-PHPUNIT-VERSION using PHP SOME-PHP-VERSION (cli) on SOME-OS
+Configuration: tests/phpunit.test.xml
+
+Tests\ExampleTests\TestThatHasAllStatusesTest, 14 tests
+✓ testSuccess [DURATION-IN-SECONDS]
+⨯ testFail [DURATION-IN-SECONDS]
+⨯ testError [DURATION-IN-SECONDS]
+✓ testRisky [DURATION-IN-SECONDS]
+! testSkip [DURATION-IN-SECONDS]
+! testIncomplete [DURATION-IN-SECONDS]
+✓ testShouldConvertTitleCaseToLowerCasedWords [DURATION-IN-SECONDS]
+✓ testShouldConvertSnakeCaseToLowerCasedWords [DURATION-IN-SECONDS]
+✓ testCanContain1Or99Numbers [DURATION-IN-SECONDS]
+✓ test123CanStartOrEndWithNumbers456 [DURATION-IN-SECONDS]
+✓ testShouldPreserveCAPITALIZEDAndPaRTiaLLYCAPitaLIZedWords [DURATION-IN-SECONDS]
+✓ testWithNamedDatasets with data set "dataset1" [DURATION-IN-SECONDS]
+✓ testWithNamedDatasets with data set "DataSet2" [DURATION-IN-SECONDS]
+✓ testWithNamedDatasets with data set "data set 3" [DURATION-IN-SECONDS]
+
+Tests\ExampleTests\TestThatPassesTest, 2 tests
+✓ testDoBasicAssertions [DURATION-IN-SECONDS]
+✓ testDoSomeMoreAssertions [DURATION-IN-SECONDS]
+
+Tests: 16
+12 passed
+Assertions: 14
+Duration: DURATION-IN-SECONDS
