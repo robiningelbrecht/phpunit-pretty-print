@@ -29,7 +29,7 @@ abstract class TestOutcomeSubscriber implements Subscriber
         ));
     }
 
-    private function formatMethodName(string $methodName): string
+    private function formatMethodName(string $methodName): ?string
     {
         // Convert non-breaking method name to camelCase
         $methodName = str_replace(' ', '', ucwords($methodName, ' '));

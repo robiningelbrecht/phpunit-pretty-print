@@ -23,7 +23,7 @@ class Configuration
         return $this->displayQuotesForName;
     }
 
-    public function getNameToUSeInQuotes(): ?string
+    public function getNameToUseInQuotes(): ?string
     {
         return $this->nameToUSeInQuotes;
     }
@@ -31,7 +31,7 @@ class Configuration
     public static function fromParameterCollection(ParameterCollection $parameters): self
     {
         return new self(
-            $parameters->has('convertMethodNamesToSentences') ? $parameters->get('convertMethodNamesToSentences') : false,
+            $parameters->has('convertMethodNamesToSentences') && $parameters->get('convertMethodNamesToSentences'),
             $parameters->has('displayQuotesForName'),
             $parameters->has('displayQuotesForName') ? $parameters->get('displayQuotesForName') : null
         );

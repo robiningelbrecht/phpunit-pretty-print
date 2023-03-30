@@ -24,11 +24,11 @@ final class ApplicationFinishedSubscriber implements FinishedSubscriber
         render(sprintf('Assertions: %s', State::getTotalAssertionCount()));
         render(sprintf('Duration: %ss', round($event->telemetryInfo()->durationSinceStart()->asFloat(), 3)));
 
-        if (!$this->configuration->displayQuotesForName()) {
+        if (!$this->configuration->displayQuotesForName() || !$this->configuration->getNameToUseInQuotes()) {
             return;
         }
 
         render('<div></div>');
-        render(sprintf('<div class="bg-green p-2">%s</div>', Quotes::getRandomWithName('Robin')));
+        render(sprintf('<div class="bg-green p-2">%s</div>', Quotes::getRandomWithName($this->configuration->getNameToUseInQuotes())));
     }
 }

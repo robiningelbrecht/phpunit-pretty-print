@@ -109,6 +109,9 @@ class Quotes
         return strtr($quote, ['%NAME%' => $name]);
     }
 
+    /**
+     * @return string[]
+     */
     public static function getAll(): array
     {
         return self::QUOTES;

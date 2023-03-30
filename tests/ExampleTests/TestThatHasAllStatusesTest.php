@@ -68,6 +68,9 @@ class TestThatHasAllStatusesTest extends TestCase
         $this->assertEquals('test', $value);
     }
 
+    /**
+     * @return array<mixed>
+     */
     public static function provideData(): array
     {
         return [
