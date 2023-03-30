@@ -1,6 +1,11 @@
 {
     "name": "robiningelbrecht/phpunit-pretty-print",
     "description": "Prettify PHPUnit output",
+      "keywords": [
+        "Testing",
+        "PHP",
+        "phpunit"
+      ],    
     "type": "library",
     "license": "MIT",
     "authors": [
