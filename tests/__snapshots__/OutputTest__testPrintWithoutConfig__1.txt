@@ -5,9 +5,9 @@ Configuration: tests/phpunit.test.xml
 Tests\ExampleTests\TestThatHasAllStatusesTest, 15 tests
 ✓ testSuccess [DURATION-IN-SECONDS]
 ⨯ testFail [DURATION-IN-SECONDS]
-✓ testFailWithDiff [DURATION-IN-SECONDS]
+⨯ testFailWithDiff [DURATION-IN-SECONDS]
 ⨯ testError [DURATION-IN-SECONDS]
-⨯ testRisky [DURATION-IN-SECONDS]
+✓ testRisky [DURATION-IN-SECONDS]
 ! testSkip [DURATION-IN-SECONDS]
 ! testIncomplete [DURATION-IN-SECONDS]
 ✓ testShouldConvertTitleCaseToLowerCasedWords [DURATION-IN-SECONDS]
@@ -27,16 +27,10 @@ Tests\ExampleTests\TestThatPassesTest, 2 tests
  FAILED  Tests\ExampleTests\TestThatHasAllStatusesTest::testFail                                                                                                      PHPUnit\Framework\ExpectationFailedException
 Failed asserting that false is true.
 
-  1▕ [1m/Volumes/Projects/phpunit-pretty-print/tests/ExampleTests/TestThatHasAllStatusesTest.php:17[0m
+  1▕ [1m/Volumes/Projects/phpunit-pretty-print/tests/ExampleTests/TestThatHasAllStatusesTest.php:19[0m
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
- FAILED  Tests\ExampleTests\TestThatHasAllStatusesTest::testError                                                                                                                                        Exception
-error
-
-  1▕ [1m/Volumes/Projects/phpunit-pretty-print/tests/ExampleTests/TestThatHasAllStatusesTest.php:26[0m
-
-───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
- FAILED  Tests\ExampleTests\TestThatHasAllStatusesTest::testRisky                                                                                                     PHPUnit\Framework\ExpectationFailedException
+ FAILED  Tests\ExampleTests\TestThatHasAllStatusesTest::testFailWithDiff                                                                                              PHPUnit\Framework\ExpectationFailedException
 Failed asserting that two arrays are equal.
 
 --- Expected
@@ -50,7 +44,13 @@ Failed asserting that two arrays are equal.
  )
 
 
-  1▕ [1m/Volumes/Projects/phpunit-pretty-print/tests/ExampleTests/TestThatHasAllStatusesTest.php:33[0m
+  1▕ [1m/Volumes/Projects/phpunit-pretty-print/tests/ExampleTests/TestThatHasAllStatusesTest.php:25[0m
+
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ FAILED  Tests\ExampleTests\TestThatHasAllStatusesTest::testError                                                                                                                                        Exception
+error
+
+  1▕ [1m/Volumes/Projects/phpunit-pretty-print/tests/ExampleTests/TestThatHasAllStatusesTest.php:31[0m
 
 
 Tests:    1 error(s), 2 failed, 1 incomplete, 1 skipped, 12 passed (17 tests, 15 assertions)

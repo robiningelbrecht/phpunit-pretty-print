@@ -3,9 +3,12 @@
 namespace Tests\ExampleTests;
 
 use PHPUnit\Framework\TestCase;
+use Spatie\Snapshots\MatchesSnapshots;
 
 class TestThatHasAllStatusesTest extends TestCase
 {
+    use MatchesSnapshots;
+
     public function testSuccess(): void
     {
         $this->assertTrue(true);
@@ -18,6 +21,10 @@ class TestThatHasAllStatusesTest extends TestCase
 
     public function testFailWithDiff(): void
     {
+        $this->assertEquals(
+            ['one', 'two'],
+            ['two', 'one']
+        );
     }
 
     public function testError(): void
@@ -27,10 +34,6 @@ class TestThatHasAllStatusesTest extends TestCase
 
     public function testRisky(): void
     {
-        $this->assertEquals(
-            ['one', 'two'],
-            ['two', 'one']
-        );
     }
 
     public function testSkip(): void
