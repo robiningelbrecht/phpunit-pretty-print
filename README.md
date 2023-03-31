@@ -43,6 +43,16 @@ Navigate to your `phpunit.xml.dist` file and following config:
 </extensions>
 ```
 
+* Use compact mode to only output the testsuite results instead of all separate test
+
+```xml
+<extensions>
+    <bootstrap class="RobinIngelbrecht\PHPUnitPrettyPrint\PhpUnitExtension">
+        <parameter name="useCompactMode" value="true"/>
+    </bootstrap>
+</extensions>
+```
+
 * Feel good about yourself after running your testsuite by displaying a Chuck Noris quote
 
 ```xml
