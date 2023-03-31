@@ -17,7 +17,6 @@ use RobinIngelbrecht\PHPUnitPrettyPrint\Subscriber\Test\TestFinishedSubscriber;
 use RobinIngelbrecht\PHPUnitPrettyPrint\Subscriber\TestRunner\TestRunnerConfiguredSubscriber;
 use RobinIngelbrecht\PHPUnitPrettyPrint\Subscriber\TestRunner\TestRunnerExecutionStarted;
 use RobinIngelbrecht\PHPUnitPrettyPrint\Subscriber\TestSuite\TestSuiteFinishedSubscriber;
-use RobinIngelbrecht\PHPUnitPrettyPrint\Subscriber\TestSuite\TestSuiteStartedSubscriber;
 
 use function Termwind\render;
 
@@ -41,14 +40,13 @@ final class PhpUnitExtension implements Extension
             new TestRunnerExecutionStarted(),
             new TestRunnerConfiguredSubscriber(),
             // TESTSUITE SUBSCRIBERS.
-            new TestSuiteStartedSubscriber(),
-            new TestSuiteFinishedSubscriber(),
+            new TestSuiteFinishedSubscriber($configuration),
             // TEST OUTCOME SUBSCRIBERS.
-            new TestPassedSubscriber($configuration),
-            new TestFailedSubscriber($configuration),
-            new TestErroredSubscriber($configuration),
-            new TestMarkedInCompleteSubscriber($configuration),
-            new TestSkippedSubscriber($configuration),
+            new TestPassedSubscriber(),
+            new TestFailedSubscriber(),
+            new TestErroredSubscriber(),
+            new TestMarkedInCompleteSubscriber(),
+            new TestSkippedSubscriber(),
             new TestFinishedSubscriber()
         );
     }

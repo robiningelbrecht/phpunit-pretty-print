@@ -6,16 +6,15 @@ use PHPUnit\Event\Test\Skipped;
 use PHPUnit\Event\Test\SkippedSubscriber;
 use RobinIngelbrecht\PHPUnitPrettyPrint\Icon;
 use RobinIngelbrecht\PHPUnitPrettyPrint\State;
+use RobinIngelbrecht\PHPUnitPrettyPrint\UnitTestOutcome;
 
-final class TestSkippedSubscriber extends TestOutcomeSubscriber implements SkippedSubscriber
+final class TestSkippedSubscriber implements SkippedSubscriber
 {
     public function notify(Skipped $event): void
     {
         State::incrementTotalTestsSkippedCount();
-        $this->write(
-            Icon::WARNING,
-            $event->test()->name(),
-            $event->telemetryInfo()->durationSincePrevious()->asFloat(),
+        State::addUnitTestOutcome(
+            UnitTestOutcome::fromIconAndEvent(Icon::WARNING, $event)
         );
     }
 }

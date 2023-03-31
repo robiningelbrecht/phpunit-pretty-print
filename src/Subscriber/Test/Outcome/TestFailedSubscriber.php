@@ -7,8 +7,9 @@ use PHPUnit\Event\Test\FailedSubscriber;
 use RobinIngelbrecht\PHPUnitPrettyPrint\Icon;
 use RobinIngelbrecht\PHPUnitPrettyPrint\State;
 use RobinIngelbrecht\PHPUnitPrettyPrint\Throwable;
+use RobinIngelbrecht\PHPUnitPrettyPrint\UnitTestOutcome;
 
-final class TestFailedSubscriber extends TestOutcomeSubscriber implements FailedSubscriber
+final class TestFailedSubscriber implements FailedSubscriber
 {
     public function notify(Failed $event): void
     {
@@ -16,11 +17,8 @@ final class TestFailedSubscriber extends TestOutcomeSubscriber implements Failed
         State::addThrowable(
             Throwable::createFromEvent($event)
         );
-
-        $this->write(
-            Icon::FAILED,
-            $event->test()->name(),
-            $event->telemetryInfo()->durationSincePrevious()->asFloat(),
+        State::addUnitTestOutcome(
+            UnitTestOutcome::fromIconAndEvent(Icon::FAILED, $event)
         );
     }
 }

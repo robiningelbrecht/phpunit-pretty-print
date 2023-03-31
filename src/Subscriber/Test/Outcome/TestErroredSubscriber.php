@@ -7,8 +7,9 @@ use PHPUnit\Event\Test\ErroredSubscriber;
 use RobinIngelbrecht\PHPUnitPrettyPrint\Icon;
 use RobinIngelbrecht\PHPUnitPrettyPrint\State;
 use RobinIngelbrecht\PHPUnitPrettyPrint\Throwable;
+use RobinIngelbrecht\PHPUnitPrettyPrint\UnitTestOutcome;
 
-final class TestErroredSubscriber extends TestOutcomeSubscriber implements ErroredSubscriber
+final class TestErroredSubscriber implements ErroredSubscriber
 {
     public function notify(Errored $event): void
     {
@@ -17,10 +18,8 @@ final class TestErroredSubscriber extends TestOutcomeSubscriber implements Error
             Throwable::createFromEvent($event)
         );
 
-        $this->write(
-            Icon::FAILED,
-            $event->test()->name(),
-            $event->telemetryInfo()->durationSincePrevious()->asFloat(),
+        State::addUnitTestOutcome(
+            UnitTestOutcome::fromIconAndEvent(Icon::FAILED, $event)
         );
     }
 }

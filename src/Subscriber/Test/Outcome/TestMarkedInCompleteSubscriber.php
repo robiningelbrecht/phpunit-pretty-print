@@ -6,16 +6,15 @@ use PHPUnit\Event\Test\MarkedIncomplete;
 use PHPUnit\Event\Test\MarkedIncompleteSubscriber;
 use RobinIngelbrecht\PHPUnitPrettyPrint\Icon;
 use RobinIngelbrecht\PHPUnitPrettyPrint\State;
+use RobinIngelbrecht\PHPUnitPrettyPrint\UnitTestOutcome;
 
-final class TestMarkedInCompleteSubscriber extends TestOutcomeSubscriber implements MarkedIncompleteSubscriber
+final class TestMarkedInCompleteSubscriber implements MarkedIncompleteSubscriber
 {
     public function notify(MarkedIncomplete $event): void
     {
         State::incrementTotalTestsMarkedIncompleteCount();
-        $this->write(
-            Icon::WARNING,
-            $event->test()->name(),
-            $event->telemetryInfo()->durationSincePrevious()->asFloat(),
+        State::addUnitTestOutcome(
+            UnitTestOutcome::fromIconAndEvent(Icon::WARNING, $event)
         );
     }
 }

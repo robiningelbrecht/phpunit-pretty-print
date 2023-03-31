@@ -3,6 +3,7 @@
 namespace RobinIngelbrecht\PHPUnitPrettyPrint;
 
 // We'll need this until https://github.com/sebastianbergmann/phpunit/issues/5292 lands.
+
 final class State
 {
     private const TOTAL_TEST_COUNT = 'total_test_count';
@@ -14,6 +15,7 @@ final class State
     private const TOTAL_TESTS_SKIPPED_COUNT = 'total_tests_skipped_count';
 
     private const THROWABLES = 'throwables';
+    private const UNIT_TEST_OUTCOMES = 'unitTestOutComes';
 
     public static function setTotalTestCount(int $total): void
     {
@@ -105,6 +107,22 @@ final class State
     public static function getThrowables(): array
     {
         return $GLOBALS[self::THROWABLES] ?? [];
+    }
+
+    public static function addUnitTestOutcome(UnitTestOutcome $unitTestOutcome): void
+    {
+        $GLOBALS[self::UNIT_TEST_OUTCOMES][$unitTestOutcome->getTest()->id()] = $unitTestOutcome;
+    }
+
+    /**
+     * @return \RobinIngelbrecht\PHPUnitPrettyPrint\UnitTestOutcome[]
+     */
+    public static function getUnitTestOutcomes(): array
+    {
+        $outcomes = $GLOBALS[self::UNIT_TEST_OUTCOMES];
+        unset($GLOBALS[self::UNIT_TEST_OUTCOMES]);
+
+        return $outcomes;
     }
 
     private static function incrementCountForKeyWith(string $key, int $increment): void
