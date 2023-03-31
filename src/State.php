@@ -13,6 +13,8 @@ final class State
     private const TOTAL_TESTS_MARKED_INCOMPLETE_COUNT = 'total_tests_marked_incomplete_count';
     private const TOTAL_TESTS_SKIPPED_COUNT = 'total_tests_skipped_count';
 
+    private const THROWABLES = 'throwables';
+
     public static function incrementTotalTestCount(): void
     {
         self::incrementCountForKeyWith(self::TOTAL_TEST_COUNT, 1);
@@ -81,6 +83,19 @@ final class State
     public static function getTotalAssertionCount(): int
     {
         return $GLOBALS[self::TOTAL_ASSERTION_COUNT] ?? 0;
+    }
+
+    public static function addThrowable(Throwable $throwable): void
+    {
+        $GLOBALS[self::THROWABLES][] = $throwable;
+    }
+
+    /**
+     * @return \RobinIngelbrecht\PHPUnitPrettyPrint\Throwable[]
+     */
+    public static function getThrowables(): array
+    {
+        return $GLOBALS[self::THROWABLES] ?? [];
     }
 
     private static function incrementCountForKeyWith(string $key, int $increment): void

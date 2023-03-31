@@ -19,6 +19,7 @@ final class ApplicationFinishedSubscriber implements FinishedSubscriber
 
     public function notify(Finished $event): void
     {
+        $this->printThrowables();
         $summary = [];
         if ($countErrored = State::getTotalTestsErroredCount()) {
             $summary[] = sprintf('<span class="text-red font-bold">%s error(s)</span>', $countErrored);
@@ -54,5 +55,34 @@ final class ApplicationFinishedSubscriber implements FinishedSubscriber
 
         render('<div></div>');
         render(sprintf('<div class="bg-green p-2">%s</div>', Quotes::getRandom()));
+    }
+
+    private function printThrowables(): void
+    {
+        $throwables = State::getThrowables();
+        foreach ($throwables as $throwable) {
+            render('<div class="text-red"><hr></div>');
+            render(sprintf('
+                            <div class="flex justify-between">
+                                <span>
+                                    <span class="bg-red px-1 font-bold">FAILED</span>
+                                    <span class="mx-1">%s</span>
+                                </span>
+                                <span class="bg-red px-1 font-bold">%s</span>
+                            </div>',
+                $throwable->getTest()->id(),
+                $throwable->getClassName()
+            ));
+            render(sprintf('<div class="font-bold">%s</div>', $throwable->getMessage()));
+            if ($diff = $throwable->getComparisonFailure()) {
+                render($diff);
+            }
+            render(sprintf('<code>%s</code>', $throwable->getStackTrace()));
+            render('<br />');
+        }
+
+        if (!empty($throwables)) {
+            render('<br /><br />');
+        }
     }
 }

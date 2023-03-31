@@ -16,6 +16,10 @@ class TestThatHasAllStatusesTest extends TestCase
         $this->assertTrue(false);
     }
 
+    public function testFailWithDiff(): void
+    {
+    }
+
     public function testError(): void
     {
         throw new \Exception('error');
@@ -23,6 +27,10 @@ class TestThatHasAllStatusesTest extends TestCase
 
     public function testRisky(): void
     {
+        $this->assertEquals(
+            ['one', 'two'],
+            ['two', 'one']
+        );
     }
 
     public function testSkip(): void
