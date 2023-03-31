@@ -27,7 +27,7 @@ Configuration: tests/phpunit.test-with-method-name-conversion.xml
  FAILED  Tests\ExampleTests\TestThatHasAllStatusesTest::testFail                                                                                                      PHPUnit\Framework\ExpectationFailedException
 Failed asserting that false is true.
 
-  1▕ [1m/Volumes/Projects/phpunit-pretty-print/tests/ExampleTests/TestThatHasAllStatusesTest.php:19[0m
+  1▕ [1m/tests/ExampleTests/TestThatHasAllStatusesTest.php:19[0m
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
  FAILED  Tests\ExampleTests\TestThatHasAllStatusesTest::testFailWithDiff                                                                                              PHPUnit\Framework\ExpectationFailedException
@@ -44,13 +44,13 @@ Failed asserting that two arrays are equal.
  )
 
 
-  1▕ [1m/Volumes/Projects/phpunit-pretty-print/tests/ExampleTests/TestThatHasAllStatusesTest.php:26[0m
+  1▕ [1m/tests/ExampleTests/TestThatHasAllStatusesTest.php:26[0m
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
  FAILED  Tests\ExampleTests\TestThatHasAllStatusesTest::testError                                                                                                                                        Exception
 error
 
-  1▕ [1m/Volumes/Projects/phpunit-pretty-print/tests/ExampleTests/TestThatHasAllStatusesTest.php:32[0m
+  1▕ [1m/tests/ExampleTests/TestThatHasAllStatusesTest.php:32[0m
 
 
 Tests:    1 error(s), 2 failed, 1 incomplete, 1 skipped, 12 passed (17 tests, 15 assertions)

@@ -20,6 +20,7 @@ final class ApplicationFinishedSubscriber implements FinishedSubscriber
     public function notify(Finished $event): void
     {
         $this->printThrowables();
+
         $summary = [];
         if ($countErrored = State::getTotalTestsErroredCount()) {
             $summary[] = sprintf('<span class="text-red font-bold">%s error(s)</span>', $countErrored);

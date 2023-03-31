@@ -41,13 +41,14 @@ final class PhpUnitExtension implements Extension
             new TestRunnerConfiguredSubscriber(),
             // TESTSUITE SUBSCRIBERS.
             new TestSuiteFinishedSubscriber($configuration),
+            // TEST SUBSCRIBERS.
+            new TestFinishedSubscriber(),
             // TEST OUTCOME SUBSCRIBERS.
             new TestPassedSubscriber(),
             new TestFailedSubscriber(),
             new TestErroredSubscriber(),
             new TestMarkedInCompleteSubscriber(),
             new TestSkippedSubscriber(),
-            new TestFinishedSubscriber()
         );
     }
 }

@@ -21,6 +21,7 @@ class SnapshotTextDriver extends TextDriver
         $regexes = [
             '/[0-9]+.[0-9]+s|0s/' => 'DURATION-IN-SECONDS',
             '/PHPUnit [\S]+ using PHP [\S]+ \(cli\) on [\S]+/' => 'PHPUnit SOME-PHPUNIT-VERSION using PHP SOME-PHP-VERSION (cli) on SOME-OS',
+            '/\/(.*?)\/tests\/ExampleTests/' => '/tests/ExampleTests',
         ];
 
         foreach ($regexes as $regex => $replacement) {
