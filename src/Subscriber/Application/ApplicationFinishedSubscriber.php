@@ -19,19 +19,27 @@ final class ApplicationFinishedSubscriber implements FinishedSubscriber
 
     public function notify(Finished $event): void
     {
-        render(sprintf('<div class="text-neutral-400">Tests:%s
-<span class="text-red font-bold">%s error(s)</span>, 
-<span class="text-red font-bold">%s failed</span>, 
-<span class="text-yellow font-bold">%s incomplete</span>, 
-<span class="text-yellow font-bold">%s skipped</span>, 
-<span class="text-green font-bold">%s passed</span> 
-(%s tests, %s assertions)</div>',
-            str_repeat('&nbsp;', 3),
-            State::getTotalTestsErroredCount(),
-            State::getTotalTestsFailedCount(),
-            State::getTotalTestsMarkedIncompleteCount(),
-            State::getTotalTestsSkippedCount(),
-            State::getTotalTestsPassedCount(),
+        $summary = [];
+        if ($countErrored = State::getTotalTestsErroredCount()) {
+            $summary[] = sprintf('<span class="text-red font-bold">%s error(s)</span>', $countErrored);
+        }
+        if ($countFailed = State::getTotalTestsFailedCount()) {
+            $summary[] = sprintf('<span class="text-red font-bold">%s failed</span>', $countFailed);
+        }
+        if ($countIncomplete = State::getTotalTestsMarkedIncompleteCount()) {
+            $summary[] = sprintf('<span class="text-yellow font-bold">%s incomplete</span>', $countIncomplete);
+        }
+        if ($countSkipped = State::getTotalTestsSkippedCount()) {
+            $summary[] = sprintf('<span class="text-yellow font-bold">%s skipped</span>', $countSkipped);
+        }
+        if ($countPassed = State::getTotalTestsPassedCount()) {
+            $summary[] = sprintf('<span class="text-green font-bold">%s passed</span>', $countPassed);
+        }
+
+        render(sprintf('
+            <div class="text-neutral-400">Tests:%s%s (%s tests, %s assertions)</div>',
+            str_repeat('&nbsp;', 4),
+            implode(', ', $summary),
             State::getTotalTestCount(),
             State::getTotalAssertionCount()
         ));

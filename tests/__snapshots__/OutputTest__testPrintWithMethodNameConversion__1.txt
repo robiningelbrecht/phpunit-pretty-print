@@ -22,5 +22,5 @@ Tests\ExampleTests\TestThatPassesTest, 2 tests
 ✓ do basic assertions [DURATION-IN-SECONDS]
 ✓ do some more assertions [DURATION-IN-SECONDS]
 
-Tests:    1 error(s), 1 failed, 1 incomplete, 1 skipped, 12 passed (16 tests, 14 assertions)
+Tests:    1 error(s), 1 failed, 1 incomplete, 1 skipped, 12 passed (16 tests, 14 assertions)
 Duration: DURATION-IN-SECONDS
