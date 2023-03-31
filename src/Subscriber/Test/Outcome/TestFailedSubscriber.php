@@ -11,7 +11,7 @@ final class TestFailedSubscriber extends TestOutcomeSubscriber implements Failed
 {
     public function notify(Failed $event): void
     {
-        State::incrementTotalTestFailedCount();
+        State::incrementTotalTestsFailedCount();
         $this->write(
             Icon::FAILED,
             $event->test()->name(),

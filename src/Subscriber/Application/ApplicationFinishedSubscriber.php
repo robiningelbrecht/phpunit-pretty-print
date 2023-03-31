@@ -19,14 +19,27 @@ final class ApplicationFinishedSubscriber implements FinishedSubscriber
 
     public function notify(Finished $event): void
     {
-        render(sprintf('<div>Tests:%s%s, <span class="text-green font-bold">%s passed</span>, <span class="text-red font-bold">%s failed</span> (%s assertions)</div>',
-            str_repeat('&nbsp;', 4),
+        // Tests:    3 failed, 1 incomplete, 1 skipped, 81 passed (198 assertions)
+        render(sprintf('<div class="text-neutral-400">Tests:%s
+<span class="text-red font-bold">%s error(s)</span>, 
+<span class="text-red font-bold">%s failed</span>, 
+<span class="text-yellow font-bold">%s incomplete</span>, 
+<span class="text-yellow font-bold">%s skipped</span>, 
+<span class="text-green font-bold">%s passed</span> 
+(%s tests, %s assertions)</div>',
+            str_repeat('&nbsp;', 3),
+            State::getTotalTestsErroredCount(),
+            State::getTotalTestsFailedCount(),
+            State::getTotalTestsMarkedIncompleteCount(),
+            State::getTotalTestsSkippedCount(),
+            State::getTotalTestsPassedCount(),
             State::getTotalTestCount(),
-            State::getTotalTestPassedCount(),
-            State::getTotalTestFailedCount(),
             State::getTotalAssertionCount()
         ));
-        render(sprintf('<div>Duration: %ss</div>', round($event->telemetryInfo()->durationSinceStart()->asFloat(), 3)));
+        render(sprintf('
+            <div><span class="text-neutral-400">Duration:</span> %ss</div>',
+            round($event->telemetryInfo()->durationSinceStart()->asFloat(), 3)
+        ));
 
         if (!$this->configuration->displayQuotesForName() || !$this->configuration->getNameToUseInQuotes()) {
             return;

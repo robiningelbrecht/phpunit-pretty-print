@@ -11,7 +11,7 @@ final class TestPassedSubscriber extends TestOutcomeSubscriber implements Passed
 {
     public function notify(Passed $event): void
     {
-        State::incrementTotalTestPassedCount();
+        State::incrementTotalTestsPassedCount();
         $this->write(
             Icon::PASSED,
             $event->test()->name(),
