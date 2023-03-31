@@ -63,6 +63,10 @@ vendor/bin/phpunit --no-ouput
 
 * <sub>We'll need this until https://github.com/sebastianbergmann/phpunit/issues/5168 lands and gets released.</sub>
 
+<p align="center">
+	<img src="readme/example.png" alt="Example">
+</p>
+
 ## Acknowledgements
 
 * API used for Chuck Noris quotes: https://api.chucknorris.io/
