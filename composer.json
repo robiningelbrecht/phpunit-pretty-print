@@ -41,6 +41,7 @@
     "lint:fix": " ./vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php",
     "phpunit:test": "vendor/bin/phpunit --configuration=tests/phpunit.test.xml --no-output",
     "phpunit:test:with-method-names": "vendor/bin/phpunit --configuration=tests/phpunit.test-with-method-name-conversion.xml --no-output",
-    "phpunit:test:with-quotes": "vendor/bin/phpunit --configuration=tests/phpunit.test-with-quotes.xml --no-output"
+    "phpunit:test:with-quotes": "vendor/bin/phpunit --configuration=tests/phpunit.test-with-quotes.xml --no-output",
+    "phpunit:test:compact": "vendor/bin/phpunit --configuration=tests/phpunit.test-compact-mode.xml --no-output"
   }
 }

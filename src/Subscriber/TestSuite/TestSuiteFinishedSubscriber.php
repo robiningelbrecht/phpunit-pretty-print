@@ -48,6 +48,10 @@ final class TestSuiteFinishedSubscriber implements FinishedSubscriber
             round((State::getTestsWithOutcomeCount() / State::getTotalTestCount()) * 100)
         ));
 
+        if ($this->configuration->useCompactMode()) {
+            return;
+        }
+
         foreach ($unitTestOutcomes as $unitTestOutcome) {
             $methodName = $unitTestOutcome->getTest()->name();
 

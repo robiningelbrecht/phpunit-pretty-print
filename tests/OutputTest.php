@@ -34,6 +34,18 @@ class OutputTest extends TestCase
         $this->assertMatchesSnapshot(implode(PHP_EOL, $out), new SnapshotTextDriver());
     }
 
+    public function testPrintCompactMode(): void
+    {
+        $command = [
+            'vendor/bin/phpunit',
+            '--configuration=tests/phpunit.test-compact-mode.xml',
+            '--no-output',
+        ];
+
+        exec(implode(' ', $command), $out);
+        $this->assertMatchesSnapshot(implode(PHP_EOL, $out), new SnapshotTextDriver());
+    }
+
     public function testPrintWithQuotes(): void
     {
         $command = [

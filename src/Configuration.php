@@ -9,6 +9,7 @@ class Configuration
     private function __construct(
         private readonly bool $convertMethodNamesToSentences,
         private readonly bool $displayQuote,
+        private readonly bool $useCompactMode,
     ) {
     }
 
@@ -22,11 +23,17 @@ class Configuration
         return $this->displayQuote;
     }
 
+    public function useCompactMode(): bool
+    {
+        return $this->useCompactMode;
+    }
+
     public static function fromParameterCollection(ParameterCollection $parameters): self
     {
         return new self(
             $parameters->has('convertMethodNamesToSentences') && $parameters->get('convertMethodNamesToSentences'),
             $parameters->has('displayQuote') && $parameters->get('displayQuote'),
+            $parameters->has('useCompactMode') && $parameters->get('useCompactMode'),
         );
     }
 }
