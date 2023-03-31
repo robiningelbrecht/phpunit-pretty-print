@@ -2,7 +2,7 @@
 Runtime:       PHPUnit SOME-PHPUNIT-VERSION using PHP SOME-PHP-VERSION (cli) on SOME-OS
 Configuration: tests/phpunit.test.xml
 
-Tests\ExampleTests\TestThatHasAllStatusesTest, 15 tests
+Tests\ExampleTests\TestThatHasAllStatusesTest, 15 tests                                                                                                                                                          0%
 ✓ testSuccess [DURATION-IN-SECONDS]
 ⨯ testFail [DURATION-IN-SECONDS]
 ⨯ testFailWithDiff [DURATION-IN-SECONDS]
@@ -19,7 +19,7 @@ Tests\ExampleTests\TestThatHasAllStatusesTest, 15 tests
 ✓ testWithNamedDatasets with data set "DataSet2" [DURATION-IN-SECONDS]
 ✓ testWithNamedDatasets with data set "data set 3" [DURATION-IN-SECONDS]
 
-Tests\ExampleTests\TestThatPassesTest, 2 tests
+Tests\ExampleTests\TestThatPassesTest, 2 tests                                                                                                                                                                  88%
 ✓ testDoBasicAssertions [DURATION-IN-SECONDS]
 ✓ testDoSomeMoreAssertions [DURATION-IN-SECONDS]
 
@@ -44,13 +44,13 @@ Failed asserting that two arrays are equal.
  )
 
 
-  1▕ [1m/Volumes/Projects/phpunit-pretty-print/tests/ExampleTests/TestThatHasAllStatusesTest.php:25[0m
+  1▕ [1m/Volumes/Projects/phpunit-pretty-print/tests/ExampleTests/TestThatHasAllStatusesTest.php:26[0m
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
  FAILED  Tests\ExampleTests\TestThatHasAllStatusesTest::testError                                                                                                                                        Exception
 error
 
-  1▕ [1m/Volumes/Projects/phpunit-pretty-print/tests/ExampleTests/TestThatHasAllStatusesTest.php:31[0m
+  1▕ [1m/Volumes/Projects/phpunit-pretty-print/tests/ExampleTests/TestThatHasAllStatusesTest.php:32[0m
 
 
 Tests:    1 error(s), 2 failed, 1 incomplete, 1 skipped, 12 passed (17 tests, 15 assertions)

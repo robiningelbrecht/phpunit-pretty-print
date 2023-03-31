@@ -14,7 +14,8 @@ use RobinIngelbrecht\PHPUnitPrettyPrint\Subscriber\Test\Outcome\TestMarkedInComp
 use RobinIngelbrecht\PHPUnitPrettyPrint\Subscriber\Test\Outcome\TestPassedSubscriber;
 use RobinIngelbrecht\PHPUnitPrettyPrint\Subscriber\Test\Outcome\TestSkippedSubscriber;
 use RobinIngelbrecht\PHPUnitPrettyPrint\Subscriber\Test\TestFinishedSubscriber;
-use RobinIngelbrecht\PHPUnitPrettyPrint\Subscriber\TestRunnerConfiguredSubscriber;
+use RobinIngelbrecht\PHPUnitPrettyPrint\Subscriber\TestRunner\TestRunnerConfiguredSubscriber;
+use RobinIngelbrecht\PHPUnitPrettyPrint\Subscriber\TestRunner\TestRunnerExecutionStarted;
 use RobinIngelbrecht\PHPUnitPrettyPrint\Subscriber\TestSuite\TestSuiteFinishedSubscriber;
 use RobinIngelbrecht\PHPUnitPrettyPrint\Subscriber\TestSuite\TestSuiteStartedSubscriber;
 
@@ -36,6 +37,8 @@ final class PhpUnitExtension implements Extension
             // APPLICATION SUBSCRIBERS.
             new ApplicationStartedSubscriber(),
             new ApplicationFinishedSubscriber($configuration),
+            // TEST RUNNER SUBSCRIBERS.
+            new TestRunnerExecutionStarted(),
             new TestRunnerConfiguredSubscriber(),
             // TESTSUITE SUBSCRIBERS.
             new TestSuiteStartedSubscriber(),

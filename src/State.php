@@ -15,14 +15,23 @@ final class State
 
     private const THROWABLES = 'throwables';
 
-    public static function incrementTotalTestCount(): void
+    public static function setTotalTestCount(int $total): void
     {
-        self::incrementCountForKeyWith(self::TOTAL_TEST_COUNT, 1);
+        $GLOBALS[self::TOTAL_TEST_COUNT] = $total;
     }
 
     public static function getTotalTestCount(): int
     {
         return $GLOBALS[self::TOTAL_TEST_COUNT] ?? 0;
+    }
+
+    public static function getTestsWithOutcomeCount(): int
+    {
+        return self::getTotalTestsPassedCount() +
+            self::getTotalTestsFailedCount() +
+            self::getTotalTestsErroredCount() +
+            self::getTotalTestsSkippedCount() +
+            self::getTotalTestsMarkedIncompleteCount();
     }
 
     public static function incrementTotalTestsPassedCount(): void

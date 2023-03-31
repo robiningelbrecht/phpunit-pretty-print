@@ -1,6 +1,6 @@
 <?php
 
-namespace RobinIngelbrecht\PHPUnitPrettyPrint\Subscriber;
+namespace RobinIngelbrecht\PHPUnitPrettyPrint\Subscriber\TestRunner;
 
 use PHPUnit\Event\TestRunner\Configured;
 use PHPUnit\Event\TestRunner\ConfiguredSubscriber;

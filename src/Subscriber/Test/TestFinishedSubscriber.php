@@ -10,7 +10,6 @@ final class TestFinishedSubscriber implements FinishedSubscriber
 {
     public function notify(Finished $event): void
     {
-        State::incrementTotalTestCount();
         State::incrementTotalAssertionCountWith($event->numberOfAssertionsPerformed());
     }
 }
