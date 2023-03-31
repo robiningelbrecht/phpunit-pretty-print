@@ -48,7 +48,7 @@ class OutputTest extends TestCase
 
         $printContainsQuote = false;
         foreach (Quotes::getAll() as $quote) {
-            if (!str_contains($print, strtr($quote, ['%NAME%' => 'Robin']))) {
+            if (!str_contains($print, $quote)) {
                 continue;
             }
 

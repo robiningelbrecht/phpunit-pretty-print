@@ -19,7 +19,6 @@ final class ApplicationFinishedSubscriber implements FinishedSubscriber
 
     public function notify(Finished $event): void
     {
-        // Tests:    3 failed, 1 incomplete, 1 skipped, 81 passed (198 assertions)
         render(sprintf('<div class="text-neutral-400">Tests:%s
 <span class="text-red font-bold">%s error(s)</span>, 
 <span class="text-red font-bold">%s failed</span>, 
@@ -41,11 +40,11 @@ final class ApplicationFinishedSubscriber implements FinishedSubscriber
             round($event->telemetryInfo()->durationSinceStart()->asFloat(), 3)
         ));
 
-        if (!$this->configuration->displayQuotesForName() || !$this->configuration->getNameToUseInQuotes()) {
+        if (!$this->configuration->displayQuote()) {
             return;
         }
 
         render('<div></div>');
-        render(sprintf('<div class="bg-green p-2">%s</div>', Quotes::getRandomWithName($this->configuration->getNameToUseInQuotes())));
+        render(sprintf('<div class="bg-green p-2">%s</div>', Quotes::getRandom()));
     }
 }

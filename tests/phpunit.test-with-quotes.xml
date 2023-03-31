@@ -9,7 +9,7 @@
         cacheDirectory=".phpunit.cache">
   <extensions>
     <bootstrap class="RobinIngelbrecht\PHPUnitPrettyPrint\PhpUnitExtension">
-      <parameter name="displayQuotesForName" value="Robin"/>
+      <parameter name="displayQuote" value="true"/>
     </bootstrap>
   </extensions>
 

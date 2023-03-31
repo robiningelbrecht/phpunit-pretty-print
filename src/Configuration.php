@@ -8,8 +8,7 @@ class Configuration
 {
     private function __construct(
         private readonly bool $convertMethodNamesToSentences,
-        private readonly bool $displayQuotesForName,
-        private readonly ?string $nameToUSeInQuotes,
+        private readonly bool $displayQuote,
     ) {
     }
 
@@ -18,22 +17,16 @@ class Configuration
         return $this->convertMethodNamesToSentences;
     }
 
-    public function displayQuotesForName(): bool
+    public function displayQuote(): bool
     {
-        return $this->displayQuotesForName;
-    }
-
-    public function getNameToUseInQuotes(): ?string
-    {
-        return $this->nameToUSeInQuotes;
+        return $this->displayQuote;
     }
 
     public static function fromParameterCollection(ParameterCollection $parameters): self
     {
         return new self(
             $parameters->has('convertMethodNamesToSentences') && $parameters->get('convertMethodNamesToSentences'),
-            $parameters->has('displayQuotesForName'),
-            $parameters->has('displayQuotesForName') ? $parameters->get('displayQuotesForName') : null
+            $parameters->has('displayQuote') && $parameters->get('displayQuote'),
         );
     }
 }
