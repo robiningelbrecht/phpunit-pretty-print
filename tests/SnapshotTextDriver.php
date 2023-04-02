@@ -24,6 +24,7 @@ class SnapshotTextDriver extends TextDriver
             '/\/(.*?)\/tests\/ExampleTests/' => '/tests/ExampleTests',
             '/([\s]+)([\d]+)%/' => ' $2%',
             '/FAILED[\s]+([\S]+::[\S]+)([\s]+)([\S]+)/' => 'FAILED $1 $3',
+            '/─[\S]*─/' => '───────────────────',
         ];
 
         foreach ($regexes as $regex => $replacement) {
