@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="" tests="8" assertions="8" errors="0" failures="0" skipped="0" time="1.268712">
+    <testsuite name="unit" tests="8" assertions="8" errors="0" failures="0" skipped="0" time="1.268712">
+      <testsuite name="Tests\OutputTest" file="/Volumes/Projects/phpunit-pretty-print/tests/OutputTest.php" tests="8" assertions="8" errors="0" failures="0" skipped="0" time="1.268712">
+        <testcase name="testPrintWithoutConfig" file="/Volumes/Projects/phpunit-pretty-print/tests/OutputTest.php" line="13" class="Tests\OutputTest" classname="Tests.OutputTest" assertions="1" time="0.162703"/>
+        <testcase name="testPrettifyMethodNames" file="/Volumes/Projects/phpunit-pretty-print/tests/OutputTest.php" line="25" class="Tests\OutputTest" classname="Tests.OutputTest" assertions="1" time="0.175813"/>
+        <testcase name="testPrettifyMethodNamesAtRunTime" file="/Volumes/Projects/phpunit-pretty-print/tests/OutputTest.php" line="37" class="Tests\OutputTest" classname="Tests.OutputTest" assertions="1" time="0.160477"/>
+        <testcase name="testPrintCompactMode" file="/Volumes/Projects/phpunit-pretty-print/tests/OutputTest.php" line="49" class="Tests\OutputTest" classname="Tests.OutputTest" assertions="1" time="0.157935"/>
+        <testcase name="testPrintCompactModeAtRunTime" file="/Volumes/Projects/phpunit-pretty-print/tests/OutputTest.php" line="61" class="Tests\OutputTest" classname="Tests.OutputTest" assertions="1" time="0.161833"/>
+        <testcase name="testPrintWithQuote" file="/Volumes/Projects/phpunit-pretty-print/tests/OutputTest.php" line="73" class="Tests\OutputTest" classname="Tests.OutputTest" assertions="1" time="0.154930"/>
+        <testcase name="testPrintWithQuoteAtRuntime" file="/Volumes/Projects/phpunit-pretty-print/tests/OutputTest.php" line="100" class="Tests\OutputTest" classname="Tests.OutputTest" assertions="1" time="0.164982"/>
+        <testcase name="testPrintWhenNoOutputArgumentIsProvided" file="/Volumes/Projects/phpunit-pretty-print/tests/OutputTest.php" line="128" class="Tests\OutputTest" classname="Tests.OutputTest" assertions="1" time="0.130041"/>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>

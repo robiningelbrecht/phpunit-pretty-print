@@ -1,0 +1,40 @@
+name: CI
+on:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  test-suite:
+    name: PHPStan, PHPcs & Testsuite
+    runs-on: ubuntu-latest
+
+    steps:
+      # https://github.com/marketplace/actions/setup-php-action
+      - name: Setup PHP 8.1 with Xdebug 3.x
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          coverage: xdebug
+
+      # https://github.com/marketplace/actions/checkout
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: composer install --prefer-dist
+
+      - name: Run PHPStan
+        run: vendor/bin/phpstan analyse
+
+      - name: Run PHPcs fixer dry-run
+        run: vendor/bin/php-cs-fixer fix --dry-run --stop-on-violation --config=.php-cs-fixer.dist.php
+
+      - name: Run test suite
+        run: vendor/bin/phpunit --fail-on-incomplete  --log-junit junit.xml --coverage-clover clover.xml
+
+      # https://github.com/marketplace/actions/codecov
+      - name: Send test coverage to codecov.io
+        uses: codecov/codecov-action@v3
+        with:
+          files: clover.xml
+          fail_ci_if_error: true # optional (default = false)
+          verbose: true # optional (default = false)
