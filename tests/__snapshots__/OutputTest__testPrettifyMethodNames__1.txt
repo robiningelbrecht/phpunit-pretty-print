@@ -2,7 +2,7 @@
 Runtime:       PHPUnit SOME-PHPUNIT-VERSION using PHP SOME-PHP-VERSION (cli) on SOME-OS
 Configuration: tests/phpunit.test-prettify-method-names.xml
 
- FAIL  Tests\ExampleTests\TestThatHasAllStatusesTest, 15 tests          88%
+ FAIL  Tests\ExampleTests\TestThatHasAllStatusesTest, 15 tests 88%
  ✓ success [DURATION-IN-SECONDS]
  ⨯ fail [DURATION-IN-SECONDS]
  ⨯ fail with diff [DURATION-IN-SECONDS]
@@ -19,18 +19,18 @@ Configuration: tests/phpunit.test-prettify-method-names.xml
  ✓ with named datasets with data set data set 2 [DURATION-IN-SECONDS]
  ✓ with named datasets with data set set 3 [DURATION-IN-SECONDS]
 
- PASS  Tests\ExampleTests\TestThatPassesTest, 2 tests          100%
+ PASS  Tests\ExampleTests\TestThatPassesTest, 2 tests 100%
  ✓ do basic assertions [DURATION-IN-SECONDS]
  ✓ do some more assertions [DURATION-IN-SECONDS]
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
- FAILED  Tests\ExampleTests\TestThatHasAllStatusesTest::testFail          PHPUnit\Framework\ExpectationFailedException
+ FAILED  Tests\ExampleTests\TestThatHasAllStatusesTest::testFail PHPUnit\Framework\ExpectationFailedException
 Failed asserting that false is true.
 
   1▕ [1m/tests/ExampleTests/TestThatHasAllStatusesTest.php:19[0m
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
- FAILED  Tests\ExampleTests\TestThatHasAllStatusesTest::testFailWithDiff          PHPUnit\Framework\ExpectationFailedException
+ FAILED  Tests\ExampleTests\TestThatHasAllStatusesTest::testFailWithDiff PHPUnit\Framework\ExpectationFailedException
 Failed asserting that two arrays are equal.
 
 --- Expected
@@ -41,13 +41,10 @@ Failed asserting that two arrays are equal.
 -    1 => 'two'
 +    0 => 'two'
 +    1 => 'one'
- )
-
-
-  1▕ [1m/tests/ExampleTests/TestThatHasAllStatusesTest.php:26[0m
+ ) 1▕ [1m/tests/ExampleTests/TestThatHasAllStatusesTest.php:26[0m
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
- FAILED  Tests\ExampleTests\TestThatHasAllStatusesTest::testError          Exception
+ FAILED  Tests\ExampleTests\TestThatHasAllStatusesTest::testError Exception
 error
 
   1▕ [1m/tests/ExampleTests/TestThatHasAllStatusesTest.php:32[0m
