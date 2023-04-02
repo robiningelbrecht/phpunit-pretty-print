@@ -15,6 +15,6 @@ final class TestRunnerConfiguredSubscriber implements ConfiguredSubscriber
             '<div>Configuration: %s</div>',
             $event->configuration()->configurationFile()
         ));
-        render('<div></div>');
+        render('<br />');
     }
 }

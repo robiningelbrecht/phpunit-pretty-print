@@ -1,6 +1,6 @@
 
 Runtime:       PHPUnit SOME-PHPUNIT-VERSION using PHP SOME-PHP-VERSION (cli) on SOME-OS
-Configuration: tests/phpunit.test-with-method-name-conversion.xml
+Configuration: tests/phpunit.test.xml
 
  FAIL  Tests\ExampleTests\TestThatHasAllStatusesTest, 15 tests                                                                                                                                                  88%
  ✓ success [DURATION-IN-SECONDS]

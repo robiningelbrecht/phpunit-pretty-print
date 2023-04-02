@@ -11,7 +11,7 @@ final class ApplicationStartedSubscriber implements StartedSubscriber
 {
     public function notify(Started $event): void
     {
-        render('<div></div>');
+        render('<br />');
         render(sprintf(
             '<div>Runtime:%s%s</div>',
             str_repeat('&nbsp;', 7),

@@ -9,7 +9,7 @@
         cacheDirectory=".phpunit.cache">
   <extensions>
     <bootstrap class="RobinIngelbrecht\PHPUnitPrettyPrint\PhpUnitExtension">
-      <parameter name="convertMethodNamesToSentences" value="true"/>
+      <parameter name="prettifyMethodNames" value="true"/>
     </bootstrap>
   </extensions>
 

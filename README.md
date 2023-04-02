@@ -22,7 +22,8 @@ This package requires:
 
 ## Configuration
 
-Navigate to your `phpunit.xml.dist` file and following config:
+Navigate to your `phpunit.xml.dist` file and add following config to set default options 
+(you can also set these options at run time):
 
 ```xml
 <extensions>
@@ -38,7 +39,7 @@ Navigate to your `phpunit.xml.dist` file and following config:
 ```xml
 <extensions>
     <bootstrap class="RobinIngelbrecht\PHPUnitPrettyPrint\PhpUnitExtension">
-        <parameter name="convertMethodNamesToSentences" value="true"/>
+        <parameter name="prettifyMethodNames" value="true"/>
     </bootstrap>
 </extensions>
 ```
@@ -71,7 +72,31 @@ Just run your testsuite like you normally would, but be sure to add `--no-output
 vendor/bin/phpunit --no-ouput
 ```
 
-* <sub>We'll need this until https://github.com/sebastianbergmann/phpunit/issues/5168 lands and gets released.</sub>
+*<sub>We'll need this until https://github.com/sebastianbergmann/phpunit/issues/5168 lands and gets released.</sub>
+
+Prettify the method names
+
+```bash
+vendor/bin/phpunit --no-output -d --prettify-method-names
+```
+
+Use compact mode
+
+```bash
+vendor/bin/phpunit --no-output -d --compact
+```
+
+Display Chuck Norris quote
+
+```bash
+vendor/bin/phpunit --no-output -d --display-quote
+```
+
+Combine multiple options
+
+```bash
+vendor/bin/phpunit --configuration=tests/phpunit.test.xml --no-output -d --compact -d --display-quote
+```
 
 <p align="center">
 	<img src="readme/example.png" alt="Example">

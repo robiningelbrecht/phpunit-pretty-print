@@ -59,15 +59,15 @@ final class TestSuiteFinishedSubscriber implements FinishedSubscriber
                 '<div class="ml-1"><span class="text-%s font-bold">  %s</span> <span class="text-neutral-400">%s [%ss]</span></div>',
                 $unitTestOutcome->getIcon()->getColor(),
                 $unitTestOutcome->getIcon()->value,
-                $this->configuration->convertMethodNamesToSentences() ? $this->formatMethodName($methodName) : $methodName,
+                $this->configuration->prettifyMethodNames() ? $this->prettifyMethodName($methodName) : $methodName,
                 round($unitTestOutcome->getDuration()->asFloat(), 4)
             ));
         }
 
-        render('<div></div>');
+        render('<br />');
     }
 
-    private function formatMethodName(string $methodName): ?string
+    private function prettifyMethodName(string $methodName): ?string
     {
         // Convert non-breaking method name to camelCase
         $methodName = str_replace(' ', '', ucwords($methodName, ' '));
