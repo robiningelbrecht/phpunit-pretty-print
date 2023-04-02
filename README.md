@@ -5,6 +5,7 @@
 </p>
 
 <p align="center">
+<a href="https://github.com/robiningelbrecht/phpunit-pretty-print/actions/workflows/ci.yml"><img src="https://github.com/robiningelbrecht/phpunit-pretty-print/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
 <a href="https://github.com/robiningelbrecht/phpunit-pretty-print/blob/master/LICENSE"><img src="https://img.shields.io/github/license/robiningelbrecht/phpunit-pretty-print?color=428f7e&logo=open%20source%20initiative&logoColor=white" alt="License"></a>
 <a href="https://phpstan.org/"><img src="https://img.shields.io/badge/PHPStan-level%209-succes.svg?logo=php&logoColor=white&color=31C652" alt="PHPStan Enabled"></a>
 <a href="https://php.net/"><img src="https://img.shields.io/packagist/php-v/robiningelbrecht/phpunit-pretty-print?color=%23777bb3&logo=php&logoColor=white" alt="PHP"></a>
