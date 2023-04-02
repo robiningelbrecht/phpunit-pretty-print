@@ -2,7 +2,7 @@
 Runtime:       PHPUnit SOME-PHPUNIT-VERSION using PHP SOME-PHP-VERSION (cli) on SOME-OS
 Configuration: tests/phpunit.test.xml
 
- FAIL  Tests\ExampleTests\TestThatHasAllStatusesTest, 15 tests                                                                                                                                                  88%
+ FAIL  Tests\ExampleTests\TestThatHasAllStatusesTest, 15 tests          88%
  ✓ testSuccess [DURATION-IN-SECONDS]
  ⨯ testFail [DURATION-IN-SECONDS]
  ⨯ testFailWithDiff [DURATION-IN-SECONDS]
@@ -19,18 +19,18 @@ Configuration: tests/phpunit.test.xml
  ✓ testWithNamedDatasets with data set "DataSet2" [DURATION-IN-SECONDS]
  ✓ testWithNamedDatasets with data set "data set 3" [DURATION-IN-SECONDS]
 
- PASS  Tests\ExampleTests\TestThatPassesTest, 2 tests                                                                                                                                                          100%
+ PASS  Tests\ExampleTests\TestThatPassesTest, 2 tests          100%
  ✓ testDoBasicAssertions [DURATION-IN-SECONDS]
  ✓ testDoSomeMoreAssertions [DURATION-IN-SECONDS]
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
- FAILED  Tests\ExampleTests\TestThatHasAllStatusesTest::testFail                                                                                                      PHPUnit\Framework\ExpectationFailedException
+ FAILED  Tests\ExampleTests\TestThatHasAllStatusesTest::testFail          PHPUnit\Framework\ExpectationFailedException
 Failed asserting that false is true.
 
   1▕ [1m/tests/ExampleTests/TestThatHasAllStatusesTest.php:19[0m
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
- FAILED  Tests\ExampleTests\TestThatHasAllStatusesTest::testFailWithDiff                                                                                              PHPUnit\Framework\ExpectationFailedException
+ FAILED  Tests\ExampleTests\TestThatHasAllStatusesTest::testFailWithDiff          PHPUnit\Framework\ExpectationFailedException
 Failed asserting that two arrays are equal.
 
 --- Expected
@@ -47,7 +47,7 @@ Failed asserting that two arrays are equal.
   1▕ [1m/tests/ExampleTests/TestThatHasAllStatusesTest.php:26[0m
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
- FAILED  Tests\ExampleTests\TestThatHasAllStatusesTest::testError                                                                                                                                        Exception
+ FAILED  Tests\ExampleTests\TestThatHasAllStatusesTest::testError          Exception
 error
 
   1▕ [1m/tests/ExampleTests/TestThatHasAllStatusesTest.php:32[0m
