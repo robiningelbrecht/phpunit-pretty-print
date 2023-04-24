@@ -15,7 +15,6 @@ class OutputTest extends TestCase
         $command = [
             'vendor/bin/phpunit',
             '--configuration=tests/phpunit.test.xml',
-            '--no-output',
         ];
 
         exec(implode(' ', $command), $out);
@@ -27,7 +26,6 @@ class OutputTest extends TestCase
         $command = [
             'vendor/bin/phpunit',
             '--configuration=tests/phpunit.test-prettify-method-names.xml',
-            '--no-output',
         ];
 
         exec(implode(' ', $command), $out);
@@ -39,7 +37,6 @@ class OutputTest extends TestCase
         $command = [
             'vendor/bin/phpunit',
             '--configuration=tests/phpunit.test.xml',
-            '--no-output',
             '-d --prettify-method-names',
         ];
         exec(implode(' ', $command), $out);
@@ -51,7 +48,6 @@ class OutputTest extends TestCase
         $command = [
             'vendor/bin/phpunit',
             '--configuration=tests/phpunit.test-compact-mode.xml',
-            '--no-output',
         ];
 
         exec(implode(' ', $command), $out);
@@ -63,7 +59,6 @@ class OutputTest extends TestCase
         $command = [
             'vendor/bin/phpunit',
             '--configuration=tests/phpunit.test.xml',
-            '--no-output',
             '-d --compact',
         ];
         exec(implode(' ', $command), $out);
@@ -75,7 +70,6 @@ class OutputTest extends TestCase
         $command = [
             'vendor/bin/phpunit',
             '--configuration=tests/phpunit.test-with-quotes.xml',
-            '--no-output',
         ];
 
         exec(implode(' ', $command), $out);
@@ -102,7 +96,6 @@ class OutputTest extends TestCase
         $command = [
             'vendor/bin/phpunit',
             '--configuration=tests/phpunit.test.xml',
-            '--no-output',
             '-d --display-quote',
         ];
 
@@ -123,16 +116,5 @@ class OutputTest extends TestCase
         if (!$printContainsQuote) {
             $this->fail('Quote not found');
         }
-    }
-
-    public function testPrintWhenNoOutputArgumentIsProvided(): void
-    {
-        $command = [
-            'vendor/bin/phpunit',
-            '--configuration=tests/phpunit.test-prettify-method-names.xml',
-        ];
-
-        exec(implode(' ', $command), $out);
-        $this->assertStringContainsString('Add the --no-output CLI option to make sure the output is flawless', implode(PHP_EOL, $out));
     }
 }

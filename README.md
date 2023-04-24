@@ -74,33 +74,31 @@ Navigate to your `phpunit.xml.dist` file and add following config to set default
 Just run your testsuite like you normally would, but be sure to add `--no-output`* as an argument.
 
 ```bash
-vendor/bin/phpunit --no-ouput
+vendor/bin/phpunit
 ```
-
-*<sub>We'll need this until https://github.com/sebastianbergmann/phpunit/issues/5168 lands and gets released.</sub>
 
 Prettify the method names
 
 ```bash
-vendor/bin/phpunit --no-output -d --prettify-method-names
+vendor/bin/phpunit -d --prettify-method-names
 ```
 
 Use compact mode
 
 ```bash
-vendor/bin/phpunit --no-output -d --compact
+vendor/bin/phpunit -d --compact
 ```
 
 Display Chuck Norris quote
 
 ```bash
-vendor/bin/phpunit --no-output -d --display-quote
+vendor/bin/phpunit -d --display-quote
 ```
 
 Combine multiple options
 
 ```bash
-vendor/bin/phpunit --configuration=tests/phpunit.test.xml --no-output -d --compact -d --display-quote
+vendor/bin/phpunit --configuration=tests/phpunit.test.xml -d --compact -d --display-quote
 ```
 
 <p align="center">

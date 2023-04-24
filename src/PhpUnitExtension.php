@@ -18,20 +18,15 @@ use RobinIngelbrecht\PHPUnitPrettyPrint\Subscriber\TestRunner\TestRunnerConfigur
 use RobinIngelbrecht\PHPUnitPrettyPrint\Subscriber\TestRunner\TestRunnerExecutionStarted;
 use RobinIngelbrecht\PHPUnitPrettyPrint\Subscriber\TestSuite\TestSuiteFinishedSubscriber;
 
-use function Termwind\render;
-
 final class PhpUnitExtension implements Extension
 {
     public function bootstrap(PHPUnitConfiguration $configuration, Facade $facade, ParameterCollection $parameters): void
     {
-        if (!$configuration->noOutput()) {
-            // We'll need this until https://github.com/sebastianbergmann/phpunit/issues/5168 lands and gets released.
-            render('<div class="bg-red p-2">Add the --no-output CLI option to make sure the output is flawless</div>');
-            throw new \RuntimeException('Add the --no-output CLI option to make sure the output is flawless');
-        }
-
         $configuration = Configuration::fromParameterCollection($parameters);
 
+        $facade->replaceOutput();
+        $facade->replaceProgressOutput();
+        $facade->replaceResultOutput();
         $facade->registerSubscribers(
             // APPLICATION SUBSCRIBERS.
             new ApplicationStartedSubscriber(),
