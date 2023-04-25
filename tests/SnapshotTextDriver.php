@@ -21,7 +21,7 @@ class SnapshotTextDriver extends TextDriver
         $regexes = [
             '/[\s]+[0-9]+.[0-9]+s|0s/' => ' DURATION-IN-SECONDS',
             '/\/(.*?)\/tests\/ExampleTests/' => '/tests/ExampleTests',
-            // '/([\s]+)([\d]+)%/' => ' $2%',
+            '/FAILED(.*?)>(.*?)[ ]{3,}([\S]+)/' => 'FAILED$1>$2 $3',
             '/─[\S]*─/' => '───────────────────',
             '/([\d]+.[\d]+)%/' => 'SOME-PERCENTAGE',
         ];

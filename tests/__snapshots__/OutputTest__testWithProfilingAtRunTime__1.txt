@@ -53,7 +53,7 @@
   1   tests/ExampleTests/TestThatHasAllStatusesTest.php:31
 
   ───────────────────
-   FAILED  Tests\ExampleTests\TestThatHasAllStatusesTest > error                                                                                                                                         Exception
+   FAILED  Tests\ExampleTests\TestThatHasAllStatusesTest > error Exception
   error
 
   at tests/ExampleTests/TestThatHasAllStatusesTest.php:38
