@@ -24,6 +24,7 @@ class SnapshotTextDriver extends TextDriver
             '/FAILED(.*?)>(.*?)[ ]{3,}([\S]+)/' => 'FAILED$1>$2 $3',
             '/─[\S]*─/' => '───────────────────',
             '/([\d]+.[\d]+)%/' => 'SOME-PERCENTAGE',
+            '/[ ]{3,}\(SOME-PERCENTAGE/' => '(SOME-PERCENTAGE',
         ];
 
         foreach ($regexes as $regex => $replacement) {

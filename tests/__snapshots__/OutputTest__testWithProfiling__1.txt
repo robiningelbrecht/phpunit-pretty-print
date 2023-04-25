@@ -10,4 +10,4 @@
   Tests\ExampleTests\TestThatPassesTest > do basic assertions DURATION-IN-SECONDS
   Tests\ExampleTests\TestThatPassesTest > do some more assertions DURATION-IN-SECONDS
   ───────────────────
-                                                                                                                                                                                            (SOME-PERCENTAGE of DURATION-IN-SECONDS) DURATION-IN-SECONDS
+(SOME-PERCENTAGE of DURATION-IN-SECONDS) DURATION-IN-SECONDS

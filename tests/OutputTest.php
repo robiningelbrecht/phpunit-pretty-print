@@ -36,6 +36,7 @@ class OutputTest extends TestCase
     {
         $command = [
             'vendor/bin/phpunit',
+            'tests/ExampleTests/TestThatPassesTest.php',
             '--configuration=tests/phpunit.test.xml',
             '-d --profiling',
         ];
