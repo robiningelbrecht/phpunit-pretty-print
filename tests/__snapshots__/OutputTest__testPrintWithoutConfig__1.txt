@@ -16,15 +16,15 @@
   Failed asserting that false is true.
 
   at tests/ExampleTests/TestThatHasAllStatusesTest.php:23
-     19▕
-     20▕     public function testFail(): void
-     21▕     {
-     22▕         usleep(self::SLEEP_IN_MICRO_SECONDS);
-  ➜  23▕         $this->assertTrue(false);
-     24▕     }
-     25▕
-     26▕     public function testFailWithDiff(): void
-     27▕     {
+   19▕
+   20▕   public function testFail(): void
+   21▕   {
+   22▕   usleep(self::SLEEP_IN_MICRO_SECONDS);
+  ➜  23▕   $this->assertTrue(false);
+   24▕   }
+   25▕
+   26▕   public function testFailWithDiff(): void
+   27▕   {
 
   1   tests/ExampleTests/TestThatHasAllStatusesTest.php:23
 
@@ -32,23 +32,23 @@
    FAILED  Tests\ExampleTests\TestThatHasAllStatusesTest > fail with diff
   Failed asserting that two arrays are equal.
    Array (
-  -    0 => 'one'
-  -    1 => 'two'
-  +    0 => 'two'
-  +    1 => 'one'
+  -   0 => 'one'
+  -   1 => 'two'
+  +   0 => 'two'
+  +   1 => 'one'
    )
 
 
   at tests/ExampleTests/TestThatHasAllStatusesTest.php:31
-     27▕     {
-     28▕         usleep(self::SLEEP_IN_MICRO_SECONDS);
-     29▕         $this->assertEquals(
-     30▕             ['one', 'two'],
-  ➜  31▕             ['two', 'one']
-     32▕         );
-     33▕     }
-     34▕
-     35▕     public function testError(): void
+   27▕   {
+   28▕   usleep(self::SLEEP_IN_MICRO_SECONDS);
+   29▕   $this->assertEquals(
+   30▕   ['one', 'two'],
+  ➜  31▕   ['two', 'one']
+   32▕   );
+   33▕   }
+   34▕
+   35▕   public function testError(): void
 
   1   tests/ExampleTests/TestThatHasAllStatusesTest.php:31
 
@@ -57,18 +57,18 @@
   error
 
   at tests/ExampleTests/TestThatHasAllStatusesTest.php:38
-     34▕
-     35▕     public function testError(): void
-     36▕     {
-     37▕         usleep(self::SLEEP_IN_MICRO_SECONDS);
-  ➜  38▕         throw new \Exception('error');
-     39▕     }
-     40▕
-     41▕     public function testRisky(): void
-     42▕     {
+   34▕
+   35▕   public function testError(): void
+   36▕   {
+   37▕   usleep(self::SLEEP_IN_MICRO_SECONDS);
+  ➜  38▕   throw new \Exception('error');
+   39▕   }
+   40▕
+   41▕   public function testRisky(): void
+   42▕   {
 
   1   tests/ExampleTests/TestThatHasAllStatusesTest.php:38
 
 
-  Tests:    3 failed, 1 risky, 1 incomplete, 1 skipped, 3 passed (7 assertions)
+  Tests:   3 failed, 1 risky, 1 incomplete, 1 skipped, 3 passed (7 assertions)
   Duration: DURATION-IN-SECONDS
