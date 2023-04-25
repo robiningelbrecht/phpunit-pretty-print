@@ -47,7 +47,7 @@ Also make sure the `color` attribute is set to `true`:
 
 ### Options
 
-* Output profiling report and the end of the test run
+* Output profiling report at the end of the test run
 
 ```xml
 <extensions>
