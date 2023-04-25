@@ -23,8 +23,8 @@ final class PhpUnitExtension implements Extension
         if ($configuration->useCompactMode()) {
             $_SERVER['COLLISION_PRINTER_COMPACT'] = true;
         }
-        if ($configuration->useProfiling()) {
-            $_SERVER['COLLISION_PRINTER_PROFILE'] = $configuration->useProfiling();
+        if ($configuration->displayProfiling()) {
+            $_SERVER['COLLISION_PRINTER_PROFILE'] = $configuration->displayProfiling();
         }
 
         EnsurePrinterIsRegisteredSubscriber::register();

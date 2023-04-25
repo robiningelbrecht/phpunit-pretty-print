@@ -52,7 +52,7 @@ Also make sure the `color` attribute is set to `true`:
 ```xml
 <extensions>
     <bootstrap class="RobinIngelbrecht\PHPUnitPrettyPrint\PhpUnitExtension">
-        <parameter name="useProfiling" value="true"/>
+        <parameter name="displayProfiling" value="true"/>
     </bootstrap>
 </extensions>
 ```

@@ -7,15 +7,15 @@ use PHPUnit\Runner\Extension\ParameterCollection;
 class Configuration
 {
     private function __construct(
-        private readonly bool $profiling,
+        private readonly bool $displayProfiling,
         private readonly bool $displayQuote,
         private readonly bool $useCompactMode,
     ) {
     }
 
-    public function useProfiling(): bool
+    public function displayProfiling(): bool
     {
-        return $this->profiling;
+        return $this->displayProfiling;
     }
 
     public function displayQuote(): bool
@@ -31,7 +31,7 @@ class Configuration
     public static function fromParameterCollection(ParameterCollection $parameters): self
     {
         if (!$useProfiling = in_array('--profiling', $_SERVER['argv'], true)) {
-            $useProfiling = $parameters->has('useProfiling') && $parameters->get('useProfiling');
+            $useProfiling = $parameters->has('displayProfiling') && $parameters->get('displayProfiling');
         }
         if (!$useCompactMode = in_array('--compact', $_SERVER['argv'], true)) {
             $useCompactMode = $parameters->has('useCompactMode') && $parameters->get('useCompactMode');

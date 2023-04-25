@@ -9,7 +9,7 @@
         cacheDirectory=".phpunit.cache">
   <extensions>
     <bootstrap class="RobinIngelbrecht\PHPUnitPrettyPrint\PhpUnitExtension">
-      <parameter name="useProfiling" value="true"/>
+      <parameter name="displayProfiling" value="true"/>
     </bootstrap>
   </extensions>
 
