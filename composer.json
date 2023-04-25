@@ -16,7 +16,7 @@
   ],
   "require": {
     "php": "^8.1 || ^8.2",
-    "nunomaduro/termwind": "^1.15",
+    "nunomaduro/collision": "^7.5",
     "phpunit/phpunit": "^10.1"
   },
   "autoload": {

@@ -16,8 +16,8 @@
 ---
 
 I really like how [Pest PHP](https://pestphp.com/) formats and outputs test results, 
-but I still prefer to use [PHPUnit](https://phpunit.de/). 
-That's why I decided to build a plugin that allows you to output test results just like Pest PHP does.
+but I still prefer to use [PHPUnit](https://phpunit.de/). Luckily there's [Collision](https://github.com/nunomaduro/collision).
+This package is designed to give you beautiful error reporting when interacting with your app through the command line.
 
 ## Installation
 
@@ -37,19 +37,27 @@ Navigate to your `phpunit.xml.dist` file and add following config to set default
 </extensions>
 ```
 
+Also make sure the `color` attribute is set to `true`:
+
+```xml
+<phpunit 
+        colors="true">
+</phpunit>
+```
+
 ### Options
 
-* Prettify the method names that PHPUnit outputs
+* Output profiling report and the end of the test run
 
 ```xml
 <extensions>
     <bootstrap class="RobinIngelbrecht\PHPUnitPrettyPrint\PhpUnitExtension">
-        <parameter name="prettifyMethodNames" value="true"/>
+        <parameter name="useProfiling" value="true"/>
     </bootstrap>
 </extensions>
 ```
 
-* Use compact mode to only output the testsuite results instead of all separate test
+* Use compact mode to only output the testsuite results instead of all separate tests
 
 ```xml
 <extensions>
@@ -71,43 +79,52 @@ Navigate to your `phpunit.xml.dist` file and add following config to set default
 
 ## Usage
 
-Just run your testsuite like you normally would, but be sure to add `--no-output`* as an argument.
-
 ```bash
-vendor/bin/phpunit
+> vendor/bin/phpunit
 ```
 
-Prettify the method names
+<p align="center">
+	<img src="readme/example-default.png" alt="Example default">
+</p>
+
+Print profiling
 
 ```bash
-vendor/bin/phpunit -d --prettify-method-names
+> vendor/bin/phpunit -d --profiling
 ```
+
+<p align="center">
+	<img src="readme/example-profiling.png" alt="Example profiling">
+</p>
 
 Use compact mode
 
 ```bash
-vendor/bin/phpunit -d --compact
+> vendor/bin/phpunit -d --compact
 ```
+
+<p align="center">
+	<img src="readme/example-compact.png" alt="Example compact">
+</p>
 
 Display Chuck Norris quote
 
 ```bash
-vendor/bin/phpunit -d --display-quote
+> vendor/bin/phpunit -d --display-quote
 ```
+
+<p align="center">
+	<img src="readme/example-quote.png" alt="Example quote">
+</p>
 
 Combine multiple options
 
 ```bash
-vendor/bin/phpunit --configuration=tests/phpunit.test.xml -d --compact -d --display-quote
+> vendor/bin/phpunit --configuration=tests/phpunit.test.xml -d --compact -d --display-quote
 ```
-
-<p align="center">
-	<img src="readme/example.png" alt="Example">
-</p>
 
 ## Acknowledgements
 
 * API used for Chuck Noris quotes: https://api.chucknorris.io/
-* CLI output based on https://pestphp.com/
-* Code to format methods to human-readable sentences from https://github.com/indentno/phpunit-pretty-print
+* CLI formatting: https://github.com/nunomaduro/collision
 

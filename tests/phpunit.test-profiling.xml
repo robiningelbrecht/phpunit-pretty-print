@@ -9,20 +9,20 @@
         cacheDirectory=".phpunit.cache">
   <extensions>
     <bootstrap class="RobinIngelbrecht\PHPUnitPrettyPrint\PhpUnitExtension">
-      <parameter name="prettifyMethodNames" value="true"/>
+      <parameter name="useProfiling" value="true"/>
     </bootstrap>
   </extensions>
 
   <testsuites>
     <testsuite name="unit">
-      <directory>ExampleTests</directory>
+      <file>ExampleTests/TestThatPassesTest.php</file>
     </testsuite>
   </testsuites>
 
-  <coverage>
+  <source>
     <include>
       <directory>src</directory>
     </include>
-  </coverage>
+  </source>
 
 </phpunit>

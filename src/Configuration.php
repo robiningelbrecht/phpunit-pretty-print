@@ -7,15 +7,15 @@ use PHPUnit\Runner\Extension\ParameterCollection;
 class Configuration
 {
     private function __construct(
-        private readonly bool $prettifyMethodNames,
+        private readonly bool $profiling,
         private readonly bool $displayQuote,
         private readonly bool $useCompactMode,
     ) {
     }
 
-    public function prettifyMethodNames(): bool
+    public function useProfiling(): bool
     {
-        return $this->prettifyMethodNames;
+        return $this->profiling;
     }
 
     public function displayQuote(): bool
@@ -30,8 +30,8 @@ class Configuration
 
     public static function fromParameterCollection(ParameterCollection $parameters): self
     {
-        if (!$prettifyMethodNames = in_array('--prettify-method-names', $_SERVER['argv'], true)) {
-            $prettifyMethodNames = $parameters->has('prettifyMethodNames') && $parameters->get('prettifyMethodNames');
+        if (!$useProfiling = in_array('--profiling', $_SERVER['argv'], true)) {
+            $useProfiling = $parameters->has('useProfiling') && $parameters->get('useProfiling');
         }
         if (!$useCompactMode = in_array('--compact', $_SERVER['argv'], true)) {
             $useCompactMode = $parameters->has('useCompactMode') && $parameters->get('useCompactMode');
@@ -41,7 +41,7 @@ class Configuration
         }
 
         return new self(
-            $prettifyMethodNames,
+            $useProfiling,
             $displayQuote,
             $useCompactMode,
         );

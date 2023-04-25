@@ -2,21 +2,12 @@
 
 namespace RobinIngelbrecht\PHPUnitPrettyPrint;
 
+use NunoMaduro\Collision\Adapters\Phpunit\Subscribers\EnsurePrinterIsRegisteredSubscriber;
 use PHPUnit\Runner\Extension\Extension;
 use PHPUnit\Runner\Extension\Facade;
 use PHPUnit\Runner\Extension\ParameterCollection;
 use PHPUnit\TextUI\Configuration\Configuration as PHPUnitConfiguration;
 use RobinIngelbrecht\PHPUnitPrettyPrint\Subscriber\Application\ApplicationFinishedSubscriber;
-use RobinIngelbrecht\PHPUnitPrettyPrint\Subscriber\Application\ApplicationStartedSubscriber;
-use RobinIngelbrecht\PHPUnitPrettyPrint\Subscriber\Test\Outcome\TestErroredSubscriber;
-use RobinIngelbrecht\PHPUnitPrettyPrint\Subscriber\Test\Outcome\TestFailedSubscriber;
-use RobinIngelbrecht\PHPUnitPrettyPrint\Subscriber\Test\Outcome\TestMarkedInCompleteSubscriber;
-use RobinIngelbrecht\PHPUnitPrettyPrint\Subscriber\Test\Outcome\TestPassedSubscriber;
-use RobinIngelbrecht\PHPUnitPrettyPrint\Subscriber\Test\Outcome\TestSkippedSubscriber;
-use RobinIngelbrecht\PHPUnitPrettyPrint\Subscriber\Test\TestFinishedSubscriber;
-use RobinIngelbrecht\PHPUnitPrettyPrint\Subscriber\TestRunner\TestRunnerConfiguredSubscriber;
-use RobinIngelbrecht\PHPUnitPrettyPrint\Subscriber\TestRunner\TestRunnerExecutionStarted;
-use RobinIngelbrecht\PHPUnitPrettyPrint\Subscriber\TestSuite\TestSuiteFinishedSubscriber;
 
 final class PhpUnitExtension implements Extension
 {
@@ -27,23 +18,16 @@ final class PhpUnitExtension implements Extension
         $facade->replaceOutput();
         $facade->replaceProgressOutput();
         $facade->replaceResultOutput();
-        $facade->registerSubscribers(
-            // APPLICATION SUBSCRIBERS.
-            new ApplicationStartedSubscriber(),
-            new ApplicationFinishedSubscriber($configuration),
-            // TEST RUNNER SUBSCRIBERS.
-            new TestRunnerExecutionStarted(),
-            new TestRunnerConfiguredSubscriber(),
-            // TESTSUITE SUBSCRIBERS.
-            new TestSuiteFinishedSubscriber($configuration),
-            // TEST SUBSCRIBERS.
-            new TestFinishedSubscriber(),
-            // TEST OUTCOME SUBSCRIBERS.
-            new TestPassedSubscriber(),
-            new TestFailedSubscriber(),
-            new TestErroredSubscriber(),
-            new TestMarkedInCompleteSubscriber(),
-            new TestSkippedSubscriber(),
-        );
+
+        $_SERVER['COLLISION_PRINTER'] = true;
+        if ($configuration->useCompactMode()) {
+            $_SERVER['COLLISION_PRINTER_COMPACT'] = true;
+        }
+        if ($configuration->useProfiling()) {
+            $_SERVER['COLLISION_PRINTER_PROFILE'] = $configuration->useProfiling();
+        }
+
+        EnsurePrinterIsRegisteredSubscriber::register();
+        $facade->registerSubscriber(new ApplicationFinishedSubscriber($configuration));
     }
 }

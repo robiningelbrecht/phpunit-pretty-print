@@ -1,38 +1,63 @@
 
-Runtime:       PHPUnit SOME-PHPUNIT-VERSION using PHP SOME-PHP-VERSION (cli) on SOME-OS
-Configuration: tests/phpunit.test.xml
+  .⨯⨯⨯!si..
+  ───────────────────
+   FAILED  Tests\ExampleTests\TestThatHasAllStatusesTest > fail
+  Failed asserting that false is true.
 
- FAIL  Tests\ExampleTests\TestThatHasAllStatusesTest, 15 tests 88%
- PASS  Tests\ExampleTests\TestThatPassesTest, 2 tests 100%
-───────────────────
- FAILED Tests\ExampleTests\TestThatHasAllStatusesTest::testFail PHPUnit\Framework\ExpectationFailedException
-Failed asserting that false is true.
+  at tests/ExampleTests/TestThatHasAllStatusesTest.php:23
+     19▕
+     20▕     public function testFail(): void
+     21▕     {
+     22▕         usleep(self::SLEEP_IN_MICRO_SECONDS);
+  ➜  23▕         $this->assertTrue(false);
+     24▕     }
+     25▕
+     26▕     public function testFailWithDiff(): void
+     27▕     {
 
-  1▕ [1m/tests/ExampleTests/TestThatHasAllStatusesTest.php:19[0m
+  1   tests/ExampleTests/TestThatHasAllStatusesTest.php:23
 
-───────────────────
- FAILED Tests\ExampleTests\TestThatHasAllStatusesTest::testFailWithDiff PHPUnit\Framework\ExpectationFailedException
-Failed asserting that two arrays are equal.
-
---- Expected
-+++ Actual
-@@ @@
- Array (
--    0 => 'one'
--    1 => 'two'
-+    0 => 'two'
-+    1 => 'one'
- )
-
-
-  1▕ [1m/tests/ExampleTests/TestThatHasAllStatusesTest.php:26[0m
-
-───────────────────
- FAILED Tests\ExampleTests\TestThatHasAllStatusesTest::testError Exception
-error
-
-  1▕ [1m/tests/ExampleTests/TestThatHasAllStatusesTest.php:32[0m
+  ───────────────────
+   FAILED  Tests\ExampleTests\TestThatHasAllStatusesTest > fail with diff
+  Failed asserting that two arrays are equal.
+   Array (
+  -    0 => 'one'
+  -    1 => 'two'
+  +    0 => 'two'
+  +    1 => 'one'
+   )
 
 
-Tests:    1 error(s), 2 failed, 1 incomplete, 1 skipped, 12 passed (17 tests, 15 assertions)
-Duration: DURATION-IN-SECONDS
+  at tests/ExampleTests/TestThatHasAllStatusesTest.php:31
+     27▕     {
+     28▕         usleep(self::SLEEP_IN_MICRO_SECONDS);
+     29▕         $this->assertEquals(
+     30▕             ['one', 'two'],
+  ➜  31▕             ['two', 'one']
+     32▕         );
+     33▕     }
+     34▕
+     35▕     public function testError(): void
+
+  1   tests/ExampleTests/TestThatHasAllStatusesTest.php:31
+
+  ───────────────────
+   FAILED  Tests\ExampleTests\TestThatHasAllStatusesTest > error                                                                                                                                         Exception
+  error
+
+  at tests/ExampleTests/TestThatHasAllStatusesTest.php:38
+     34▕
+     35▕     public function testError(): void
+     36▕     {
+     37▕         usleep(self::SLEEP_IN_MICRO_SECONDS);
+  ➜  38▕         throw new \Exception('error');
+     39▕     }
+     40▕
+     41▕     public function testRisky(): void
+     42▕     {
+
+  1   tests/ExampleTests/TestThatHasAllStatusesTest.php:38
+
+
+  Tests:    3 failed, 1 risky, 1 incomplete, 1 skipped, 3 passed (7 assertions)
+  Duration: DURATION-IN-SECONDS

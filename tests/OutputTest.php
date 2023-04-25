@@ -21,23 +21,23 @@ class OutputTest extends TestCase
         $this->assertMatchesSnapshot(implode(PHP_EOL, $out), new SnapshotTextDriver());
     }
 
-    public function testPrettifyMethodNames(): void
+    public function testWithProfiling(): void
     {
         $command = [
             'vendor/bin/phpunit',
-            '--configuration=tests/phpunit.test-prettify-method-names.xml',
+            '--configuration=tests/phpunit.test-profiling.xml',
         ];
 
         exec(implode(' ', $command), $out);
         $this->assertMatchesSnapshot(implode(PHP_EOL, $out), new SnapshotTextDriver());
     }
 
-    public function testPrettifyMethodNamesAtRunTime(): void
+    public function testWithProfilingAtRunTime(): void
     {
         $command = [
             'vendor/bin/phpunit',
             '--configuration=tests/phpunit.test.xml',
-            '-d --prettify-method-names',
+            '-d --profiling',
         ];
         exec(implode(' ', $command), $out);
         $this->assertMatchesSnapshot(implode(PHP_EOL, $out), new SnapshotTextDriver());

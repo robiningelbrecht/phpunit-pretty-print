@@ -19,12 +19,11 @@ class SnapshotTextDriver extends TextDriver
     private function applyPregReplace(mixed $data): ?string
     {
         $regexes = [
-            '/[0-9]+.[0-9]+s|0s/' => 'DURATION-IN-SECONDS',
-            '/PHPUnit [\S]+ using PHP [\S]+ \(cli\) on [\S]+/' => 'PHPUnit SOME-PHPUNIT-VERSION using PHP SOME-PHP-VERSION (cli) on SOME-OS',
+            '/[\s]+[0-9]+.[0-9]+s|0s/' => ' DURATION-IN-SECONDS',
             '/\/(.*?)\/tests\/ExampleTests/' => '/tests/ExampleTests',
-            '/([\s]+)([\d]+)%/' => ' $2%',
-            '/FAILED[\s]+([\S]+::[\S]+)([\s]+)([\S]+)/' => 'FAILED $1 $3',
+            // '/([\s]+)([\d]+)%/' => ' $2%',
             '/─[\S]*─/' => '───────────────────',
+            '/([\d]+.[\d]+)%/' => 'SOME-PERCENTAGE',
         ];
 
         foreach ($regexes as $regex => $replacement) {
