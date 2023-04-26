@@ -39,18 +39,18 @@
    )
 
 
-  at tests/ExampleTests/TestThatHasAllStatusesTest.php:33
-   29▕   }
-   30▕
+  at tests/ExampleTests/TestThatHasAllStatusesTest.php:35
    31▕   public function testFailWithDiff(): void
    32▕   {
-  ➜  33▕   $this->assertEquals(
+   33▕   $this->assertEquals(
    34▕   ['one', 'two'],
-   35▕   ['two', 'one']
+  ➜  35▕   ['two', 'one']
    36▕   );
    37▕   }
+   38▕
+   39▕   public function testError(): void
 
-  1   tests/ExampleTests/TestThatHasAllStatusesTest.php:33
+  1   tests/ExampleTests/TestThatHasAllStatusesTest.php:35
 
   ───────────────────
    FAILED  Tests\ExampleTests\TestThatHasAllStatusesTest > error Exception
