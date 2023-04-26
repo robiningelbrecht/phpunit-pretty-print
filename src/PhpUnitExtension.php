@@ -28,6 +28,10 @@ final class PhpUnitExtension implements Extension
         }
 
         EnsurePrinterIsRegisteredSubscriber::register();
-        $facade->registerSubscriber(new ApplicationFinishedSubscriber($configuration));
+
+        if (!$configuration->displayQuote()) {
+            return;
+        }
+        $facade->registerSubscriber(new ApplicationFinishedSubscriber());
     }
 }

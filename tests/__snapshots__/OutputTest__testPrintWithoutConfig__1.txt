@@ -39,18 +39,18 @@
    )
 
 
-  at tests/ExampleTests/TestThatHasAllStatusesTest.php:31
+  at tests/ExampleTests/TestThatHasAllStatusesTest.php:29
+   25▕
+   26▕   public function testFailWithDiff(): void
    27▕   {
    28▕   usleep(self::SLEEP_IN_MICRO_SECONDS);
-   29▕   $this->assertEquals(
+  ➜  29▕   $this->assertEquals(
    30▕   ['one', 'two'],
-  ➜  31▕   ['two', 'one']
+   31▕   ['two', 'one']
    32▕   );
    33▕   }
-   34▕
-   35▕   public function testError(): void
 
-  1   tests/ExampleTests/TestThatHasAllStatusesTest.php:31
+  1   tests/ExampleTests/TestThatHasAllStatusesTest.php:29
 
   ───────────────────
    FAILED  Tests\ExampleTests\TestThatHasAllStatusesTest > error Exception
