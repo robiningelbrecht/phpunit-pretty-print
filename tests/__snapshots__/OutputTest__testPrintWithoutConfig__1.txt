@@ -15,18 +15,18 @@
    FAILED  Tests\ExampleTests\TestThatHasAllStatusesTest > fail
   Failed asserting that false is true.
 
-  at tests/ExampleTests/TestThatHasAllStatusesTest.php:23
-   19▕
-   20▕   public function testFail(): void
-   21▕   {
-   22▕   usleep(self::SLEEP_IN_MICRO_SECONDS);
-  ➜  23▕   $this->assertTrue(false);
+  at tests/ExampleTests/TestThatHasAllStatusesTest.php:28
    24▕   }
    25▕
-   26▕   public function testFailWithDiff(): void
+   26▕   public function testFail(): void
    27▕   {
+  ➜  28▕   $this->assertTrue(false);
+   29▕   }
+   30▕
+   31▕   public function testFailWithDiff(): void
+   32▕   {
 
-  1   tests/ExampleTests/TestThatHasAllStatusesTest.php:23
+  1   tests/ExampleTests/TestThatHasAllStatusesTest.php:28
 
   ───────────────────
    FAILED  Tests\ExampleTests\TestThatHasAllStatusesTest > fail with diff
@@ -39,35 +39,35 @@
    )
 
 
-  at tests/ExampleTests/TestThatHasAllStatusesTest.php:29
-   25▕
-   26▕   public function testFailWithDiff(): void
-   27▕   {
-   28▕   usleep(self::SLEEP_IN_MICRO_SECONDS);
-  ➜  29▕   $this->assertEquals(
-   30▕   ['one', 'two'],
-   31▕   ['two', 'one']
-   32▕   );
-   33▕   }
+  at tests/ExampleTests/TestThatHasAllStatusesTest.php:33
+   29▕   }
+   30▕
+   31▕   public function testFailWithDiff(): void
+   32▕   {
+  ➜  33▕   $this->assertEquals(
+   34▕   ['one', 'two'],
+   35▕   ['two', 'one']
+   36▕   );
+   37▕   }
 
-  1   tests/ExampleTests/TestThatHasAllStatusesTest.php:29
+  1   tests/ExampleTests/TestThatHasAllStatusesTest.php:33
 
   ───────────────────
    FAILED  Tests\ExampleTests\TestThatHasAllStatusesTest > error Exception
   error
 
-  at tests/ExampleTests/TestThatHasAllStatusesTest.php:38
-   34▕
-   35▕   public function testError(): void
-   36▕   {
-   37▕   usleep(self::SLEEP_IN_MICRO_SECONDS);
-  ➜  38▕   throw new \Exception('error');
-   39▕   }
-   40▕
-   41▕   public function testRisky(): void
-   42▕   {
+  at tests/ExampleTests/TestThatHasAllStatusesTest.php:41
+   37▕   }
+   38▕
+   39▕   public function testError(): void
+   40▕   {
+  ➜  41▕   throw new \Exception('error');
+   42▕   }
+   43▕
+   44▕   public function testRisky(): void
+   45▕   {
 
-  1   tests/ExampleTests/TestThatHasAllStatusesTest.php:38
+  1   tests/ExampleTests/TestThatHasAllStatusesTest.php:41
 
 
   Tests:   3 failed, 1 risky, 1 incomplete, 1 skipped, 3 passed (7 assertions)
