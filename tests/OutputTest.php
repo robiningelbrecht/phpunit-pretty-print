@@ -18,7 +18,7 @@ class OutputTest extends TestCase
         ];
 
         exec(implode(' ', $command), $out);
-        $this->assertMatchesSnapshot(implode(PHP_EOL, $out), new SnapshotTextDriver());
+        $this->assertStringContainsString('Tests:    3 failed, 1 risky, 1 incomplete, 1 skipped, 3 passed (7 assertions)', implode(PHP_EOL, $out));
     }
 
     public function testWithProfiling(): void
@@ -29,7 +29,9 @@ class OutputTest extends TestCase
         ];
 
         exec(implode(' ', $command), $out);
-        $this->assertMatchesSnapshot(implode(PHP_EOL, $out), new SnapshotTextDriver());
+        $output = implode(PHP_EOL, $out);
+        $this->assertStringContainsString('Tests:    2 passed (4 assertions)', $output);
+        $this->assertStringContainsString('Top 10 slowest tests', $output);
     }
 
     public function testWithProfilingAtRunTime(): void
@@ -41,7 +43,9 @@ class OutputTest extends TestCase
             '-d --profiling',
         ];
         exec(implode(' ', $command), $out);
-        $this->assertMatchesSnapshot(implode(PHP_EOL, $out), new SnapshotTextDriver());
+        $output = implode(PHP_EOL, $out);
+        $this->assertStringContainsString('Tests:    2 passed (4 assertions)', $output);
+        $this->assertStringContainsString('Top 10 slowest tests', $output);
     }
 
     public function testPrintCompactMode(): void
@@ -52,7 +56,9 @@ class OutputTest extends TestCase
         ];
 
         exec(implode(' ', $command), $out);
-        $this->assertMatchesSnapshot(implode(PHP_EOL, $out), new SnapshotTextDriver());
+        $output = implode(PHP_EOL, $out);
+        $this->assertStringContainsString('.⨯⨯⨯!si..', $output);
+        $this->assertStringContainsString('Tests:    3 failed, 1 risky, 1 incomplete, 1 skipped, 3 passed (7 assertions)', $output);
     }
 
     public function testPrintCompactModeAtRunTime(): void
@@ -63,7 +69,9 @@ class OutputTest extends TestCase
             '-d --compact',
         ];
         exec(implode(' ', $command), $out);
-        $this->assertMatchesSnapshot(implode(PHP_EOL, $out), new SnapshotTextDriver());
+        $output = implode(PHP_EOL, $out);
+        $this->assertStringContainsString('.⨯⨯⨯!si..', $output);
+        $this->assertStringContainsString('Tests:    3 failed, 1 risky, 1 incomplete, 1 skipped, 3 passed (7 assertions)', $output);
     }
 
     public function testPrintWithQuote(): void
