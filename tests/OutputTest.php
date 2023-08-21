@@ -126,4 +126,29 @@ class OutputTest extends TestCase
             $this->fail('Quote not found');
         }
     }
+
+    public function testItShouldBeEnabled(): void
+    {
+        $command = [
+            'vendor/bin/phpunit',
+            'tests/ExampleTests/TestThatPassesTest.php',
+            '--configuration=tests/phpunit.test-disable-by-default.xml',
+            '-d --enable-pretty-print',
+        ];
+        exec(implode(' ', $command), $out);
+        $output = implode(PHP_EOL, $out);
+        $this->assertStringContainsString('Tests:    2 passed (4 assertions)', $output);
+    }
+
+    public function testItShouldBeDisabled(): void
+    {
+        $command = [
+            'vendor/bin/phpunit',
+            'tests/ExampleTests/TestThatPassesTest.php',
+            '--configuration=tests/phpunit.test-disable-by-default.xml',
+        ];
+        exec(implode(' ', $command), $out);
+        $output = implode(PHP_EOL, $out);
+        $this->assertStringContainsString('OK (2 tests, 4 assertions)', $output);
+    }
 }

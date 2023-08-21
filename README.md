@@ -78,6 +78,16 @@ Also make sure the `color` attribute is set to `true`:
 </extensions>
 ```
 
+* Disable pretty print. This can be useful when you only want to prettify the output when forced via CLI (see <a href="#usage">usage</a>).
+
+```xml
+<extensions>
+    <bootstrap class="RobinIngelbrecht\PHPUnitPrettyPrint\PhpUnitExtension">
+        <parameter name="enableByDefault" value="false"/>
+    </bootstrap>
+</extensions>
+```
+
 ## Usage
 
 ```bash
@@ -117,6 +127,13 @@ Display Chuck Norris quote
 <p align="center">
 	<img src="readme/example-quote.png" alt="Example quote">
 </p>
+
+Enable/disable pretty print
+
+```bash
+> vendor/bin/phpunit -d --enable-pretty-print
+> vendor/bin/phpunit -d --disable-pretty-print
+```
 
 Combine multiple options
 

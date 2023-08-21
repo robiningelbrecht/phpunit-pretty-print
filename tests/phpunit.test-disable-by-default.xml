@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.0/phpunit.xsd"
+        beStrictAboutChangesToGlobalState="true"
+        beStrictAboutOutputDuringTests="true"
+        colors="true"
+        defaultTestSuite="unit"
+        cacheDirectory=".phpunit.cache">
+  <extensions>
+    <bootstrap class="RobinIngelbrecht\PHPUnitPrettyPrint\PhpUnitExtension">
+      <parameter name="enableByDefault" value="false"/>
+    </bootstrap>
+  </extensions>
+
+  <testsuites>
+    <testsuite name="unit">
+      <directory>ExampleTests</directory>
+    </testsuite>
+  </testsuites>
+
+  <source>
+    <include>
+      <directory>src</directory>
+    </include>
+  </source>
+
+</phpunit>

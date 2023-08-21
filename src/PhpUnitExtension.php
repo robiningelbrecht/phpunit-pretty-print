@@ -13,6 +13,10 @@ final class PhpUnitExtension implements Extension
 {
     public function bootstrap(PHPUnitConfiguration $configuration, Facade $facade, ParameterCollection $parameters): void
     {
+        if (!$this->isEnabled($parameters)) {
+            return;
+        }
+
         $configuration = Configuration::fromParameterCollection($parameters);
 
         $facade->replaceOutput();
@@ -33,5 +37,28 @@ final class PhpUnitExtension implements Extension
             return;
         }
         $facade->registerSubscriber(new ApplicationFinishedSubscriber());
+    }
+
+    private function isEnabled(ParameterCollection $parameters): bool
+    {
+        if (!$parameters->has('enableByDefault') &&
+            !in_array('--enable-pretty-print', $_SERVER['argv'], true) &&
+            !in_array('--disable-pretty-print', $_SERVER['argv'], true)) {
+            // Nothing has been set, assume the extension is enabled for backwards compatible reasons.
+            return true;
+        }
+
+        if (in_array('--enable-pretty-print', $_SERVER['argv'], true)) {
+            return true;
+        }
+        if (in_array('--disable-pretty-print', $_SERVER['argv'], true)) {
+            return false;
+        }
+
+        if ($parameters->has('enableByDefault') && !Configuration::isFalsy($parameters->get('enableByDefault'))) {
+            return true;
+        }
+
+        return false;
     }
 }
