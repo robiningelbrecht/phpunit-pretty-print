@@ -62,6 +62,6 @@ class Configuration
             return !$value;
         }
 
-        return false;
+        return true;
     }
 }
