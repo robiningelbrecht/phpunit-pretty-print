@@ -58,7 +58,10 @@ class Configuration
         if ('false' === $value) {
             return true;
         }
+        if (is_int($value)) {
+            return !$value;
+        }
 
-        return (int) $value ? 0 : 1;
+        return false;
     }
 }
