@@ -174,4 +174,167 @@ class PhpUnitExtensionTest extends TestCase
         $this->assertNotContains('COLLISION_PRINTER_COMPACT', array_keys($_SERVER));
         $this->assertNotContains('COLLISION_PRINTER_PROFILE', array_keys($_SERVER));
     }
+
+    public function testItShouldBeEnabledThroughCli(): void
+    {
+        $facade = $this->createMock(Facade::class);
+        $configuration = (new Builder())->build([]);
+        $parameters = ParameterCollection::fromArray([
+            'displayProfiling' => 'true',
+            'useCompactMode' => 'true',
+            'displayQuote' => 'true',
+            'enableByDefault' => 'false',
+        ]);
+
+        $extension = new PhpUnitExtension();
+
+        $facade
+            ->expects($this->once())
+            ->method('replaceOutput');
+
+        $facade
+            ->expects($this->once())
+            ->method('replaceProgressOutput');
+
+        $facade
+            ->expects($this->once())
+            ->method('replaceResultOutput');
+
+        $facade
+            ->expects($this->once())
+            ->method('registerSubscriber')
+            ->with(new ApplicationFinishedSubscriber());
+
+        $_SERVER['argv'][] = '--enable-pretty-print';
+
+        $extension->bootstrap(
+            $configuration,
+            $facade,
+            $parameters
+        );
+
+        $this->assertContains('COLLISION_PRINTER_COMPACT', array_keys($_SERVER));
+        $this->assertContains('COLLISION_PRINTER_PROFILE', array_keys($_SERVER));
+    }
+
+    public function testItShouldBeDisabledThroughCli(): void
+    {
+        $facade = $this->createMock(Facade::class);
+        $configuration = (new Builder())->build([]);
+        $parameters = ParameterCollection::fromArray([
+            'displayProfiling' => 'true',
+            'useCompactMode' => 'true',
+            'displayQuote' => 'true',
+        ]);
+
+        $extension = new PhpUnitExtension();
+
+        $facade
+            ->expects($this->never())
+            ->method('replaceOutput');
+
+        $facade
+            ->expects($this->never())
+            ->method('replaceProgressOutput');
+
+        $facade
+            ->expects($this->never())
+            ->method('replaceResultOutput');
+
+        $facade
+            ->expects($this->never())
+            ->method('registerSubscriber')
+            ->with(new ApplicationFinishedSubscriber());
+
+        $_SERVER['argv'][] = '--disable-pretty-print';
+
+        $extension->bootstrap(
+            $configuration,
+            $facade,
+            $parameters
+        );
+
+        $this->assertNotContains('COLLISION_PRINTER_COMPACT', array_keys($_SERVER));
+        $this->assertNotContains('COLLISION_PRINTER_PROFILE', array_keys($_SERVER));
+    }
+
+    public function testItShouldBeEnabledWithParameter(): void
+    {
+        $facade = $this->createMock(Facade::class);
+        $configuration = (new Builder())->build([]);
+        $parameters = ParameterCollection::fromArray([
+            'displayProfiling' => 'true',
+            'useCompactMode' => 'true',
+            'displayQuote' => 'true',
+            'enableByDefault' => 'true',
+        ]);
+
+        $extension = new PhpUnitExtension();
+
+        $facade
+            ->expects($this->once())
+            ->method('replaceOutput');
+
+        $facade
+            ->expects($this->once())
+            ->method('replaceProgressOutput');
+
+        $facade
+            ->expects($this->once())
+            ->method('replaceResultOutput');
+
+        $facade
+            ->expects($this->once())
+            ->method('registerSubscriber')
+            ->with(new ApplicationFinishedSubscriber());
+
+        $extension->bootstrap(
+            $configuration,
+            $facade,
+            $parameters
+        );
+
+        $this->assertContains('COLLISION_PRINTER_COMPACT', array_keys($_SERVER));
+        $this->assertContains('COLLISION_PRINTER_PROFILE', array_keys($_SERVER));
+    }
+
+    public function testItShouldBeDisabledWithParameter(): void
+    {
+        $facade = $this->createMock(Facade::class);
+        $configuration = (new Builder())->build([]);
+        $parameters = ParameterCollection::fromArray([
+            'displayProfiling' => 'true',
+            'useCompactMode' => 'true',
+            'displayQuote' => 'true',
+            'enableByDefault' => 'false',
+        ]);
+
+        $extension = new PhpUnitExtension();
+
+        $facade
+            ->expects($this->never())
+            ->method('replaceOutput');
+
+        $facade
+            ->expects($this->never())
+            ->method('replaceProgressOutput');
+
+        $facade
+            ->expects($this->never())
+            ->method('replaceResultOutput');
+
+        $facade
+            ->expects($this->never())
+            ->method('registerSubscriber')
+            ->with(new ApplicationFinishedSubscriber());
+
+        $extension->bootstrap(
+            $configuration,
+            $facade,
+            $parameters
+        );
+
+        $this->assertNotContains('COLLISION_PRINTER_COMPACT', array_keys($_SERVER));
+        $this->assertNotContains('COLLISION_PRINTER_PROFILE', array_keys($_SERVER));
+    }
 }

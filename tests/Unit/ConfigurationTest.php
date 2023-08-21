@@ -54,4 +54,16 @@ class ConfigurationTest extends TestCase
         $this->assertTrue($configuration->useCompactMode());
         $this->assertTrue($configuration->displayQuote());
     }
+
+    public function testIsFalsy(): void
+    {
+        $this->assertTrue(Configuration::isFalsy(0));
+        $this->assertTrue(Configuration::isFalsy('false'));
+        $this->assertTrue(Configuration::isFalsy(false));
+        $this->assertTrue(Configuration::isFalsy('test'));
+
+        $this->assertFalse(Configuration::isFalsy(1));
+        $this->assertFalse(Configuration::isFalsy('true'));
+        $this->assertFalse(Configuration::isFalsy(true));
+    }
 }

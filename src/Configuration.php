@@ -31,13 +31,13 @@ class Configuration
     public static function fromParameterCollection(ParameterCollection $parameters): self
     {
         if (!$useProfiling = in_array('--profiling', $_SERVER['argv'], true)) {
-            $useProfiling = $parameters->has('displayProfiling') && $parameters->get('displayProfiling');
+            $useProfiling = $parameters->has('displayProfiling') && !self::isFalsy($parameters->get('displayProfiling'));
         }
         if (!$useCompactMode = in_array('--compact', $_SERVER['argv'], true)) {
-            $useCompactMode = $parameters->has('useCompactMode') && $parameters->get('useCompactMode');
+            $useCompactMode = $parameters->has('useCompactMode') && !self::isFalsy($parameters->get('useCompactMode'));
         }
         if (!$displayQuote = in_array('--display-quote', $_SERVER['argv'], true)) {
-            $displayQuote = $parameters->has('displayQuote') && $parameters->get('displayQuote');
+            $displayQuote = $parameters->has('displayQuote') && !self::isFalsy($parameters->get('displayQuote'));
         }
 
         return new self(
@@ -45,5 +45,23 @@ class Configuration
             $displayQuote,
             $useCompactMode,
         );
+    }
+
+    public static function isFalsy(mixed $value): bool
+    {
+        if (is_bool($value)) {
+            return !$value;
+        }
+        if ('true' === $value) {
+            return false;
+        }
+        if ('false' === $value) {
+            return true;
+        }
+        if (is_int($value)) {
+            return !$value;
+        }
+
+        return true;
     }
 }
