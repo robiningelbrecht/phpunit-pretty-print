@@ -1,7 +1,7 @@
 <h1 align="center">Better PHPUnit CLI output</h1>
 
 <p align="center">
-	<img src="readme/phpunit.png" alt="PHPUnit">
+	<img src="readme/logo.png" alt="PHPUnit">
 </p>
 
 <p align="center">
