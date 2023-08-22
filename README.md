@@ -46,9 +46,11 @@ Also make sure the `color` attribute is set to `true`:
 </phpunit>
 ```
 
-### Options
+## Options
 
-* Output profiling report at the end of the test run
+All these options can be set at runtime as well, see <a href="#usage">usage</a>.
+
+### Output profiling report
 
 ```xml
 <extensions>
@@ -58,7 +60,7 @@ Also make sure the `color` attribute is set to `true`:
 </extensions>
 ```
 
-* Use compact mode to only output the testsuite results instead of all separate tests
+### Enable compact mode
 
 ```xml
 <extensions>
@@ -68,7 +70,7 @@ Also make sure the `color` attribute is set to `true`:
 </extensions>
 ```
 
-* Feel good about yourself after running your testsuite by displaying a Chuck Noris quote
+### Feel good about yourself after running your testsuite by displaying a Chuck Noris quote
 
 ```xml
 <extensions>
@@ -78,7 +80,9 @@ Also make sure the `color` attribute is set to `true`:
 </extensions>
 ```
 
-* Disable pretty print. This can be useful when you only want to prettify the output when forced via CLI (see <a href="#usage">usage</a>).
+### Disable pretty print. 
+
+This can be useful when you only want to prettify the output when forced via CLI (see <a href="#usage">usage</a>).
 
 ```xml
 <extensions>
@@ -98,7 +102,7 @@ Also make sure the `color` attribute is set to `true`:
 	<img src="readme/example-default.png" alt="Example default">
 </p>
 
-Print profiling
+### Output profiling report
 
 ```bash
 > vendor/bin/phpunit -d --profiling
@@ -108,7 +112,7 @@ Print profiling
 	<img src="readme/example-profiling.png" alt="Example profiling">
 </p>
 
-Use compact mode
+### Enable compact mode
 
 ```bash
 > vendor/bin/phpunit -d --compact
@@ -118,7 +122,7 @@ Use compact mode
 	<img src="readme/example-compact.png" alt="Example compact">
 </p>
 
-Display Chuck Norris quote
+### Display Chuck Norris quote
 
 ```bash
 > vendor/bin/phpunit -d --display-quote
@@ -128,14 +132,14 @@ Display Chuck Norris quote
 	<img src="readme/example-quote.png" alt="Example quote">
 </p>
 
-Enable/disable pretty print
+### Enable/disable pretty print
 
 ```bash
 > vendor/bin/phpunit -d --enable-pretty-print
 > vendor/bin/phpunit -d --disable-pretty-print
 ```
 
-Combine multiple options
+### Combine multiple options
 
 ```bash
 > vendor/bin/phpunit --configuration=tests/phpunit.test.xml -d --compact -d --display-quote
