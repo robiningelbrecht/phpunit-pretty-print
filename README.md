@@ -145,6 +145,21 @@ This can be useful when you only want to prettify the output when forced via CLI
 > vendor/bin/phpunit --configuration=tests/phpunit.test.xml -d --compact -d --display-quote
 ```
 
+## PHPUnit 9.x
+
+This package does not support PHPUnit 9.x but Collision does out of the box. Run 
+
+```bash
+composer require nunomaduro/collision:^6.0
+```
+
+Then add the Collision `printerClass` to your `phpunit.xml` in the `phpunit` section:
+
+```xml
+<phpunit
+        printerClass="NunoMaduro\Collision\Adapters\Phpunit\Printer">
+```
+        
 ## Acknowledgements
 
 * API used for Chuck Noris quotes: https://api.chucknorris.io/
