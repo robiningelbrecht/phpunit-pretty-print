@@ -2,12 +2,12 @@
 
 namespace Tests\Unit;
 
+use PHPUnit\Event\Facade as EventFacade;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Runner\Extension\Facade;
 use PHPUnit\Runner\Extension\ParameterCollection;
 use PHPUnit\TextUI\Configuration\Builder;
 use RobinIngelbrecht\PHPUnitPrettyPrint\PhpUnitExtension;
-use RobinIngelbrecht\PHPUnitPrettyPrint\Subscriber\Application\ApplicationFinishedSubscriber;
 
 class PhpUnitExtensionTest extends TestCase
 {
@@ -18,6 +18,13 @@ class PhpUnitExtensionTest extends TestCase
         parent::setUp();
 
         $this->originalServer = $_SERVER;
+
+        // We need to do some reflection magic here because of pour decisions in PHPUnit
+        $eventFacade = EventFacade::instance();
+        $reflection = new \ReflectionClass($eventFacade);
+        $sealed = $reflection->getProperty('sealed');
+        $sealed->setAccessible(true);
+        $sealed->setValue($eventFacade, false);
     }
 
     protected function tearDown(): void
@@ -29,7 +36,8 @@ class PhpUnitExtensionTest extends TestCase
 
     public function testBootstrapWithAllOptions(): void
     {
-        $facade = $this->createMock(Facade::class);
+        $facade = new Facade();
+
         $configuration = (new Builder())->build([]);
         $parameters = ParameterCollection::fromArray([
             'displayProfiling' => 'true',
@@ -39,36 +47,23 @@ class PhpUnitExtensionTest extends TestCase
 
         $extension = new PhpUnitExtension();
 
-        $facade
-            ->expects($this->once())
-            ->method('replaceOutput');
-
-        $facade
-            ->expects($this->once())
-            ->method('replaceProgressOutput');
-
-        $facade
-            ->expects($this->once())
-            ->method('replaceResultOutput');
-
-        $facade
-            ->expects($this->once())
-            ->method('registerSubscriber')
-            ->with(new ApplicationFinishedSubscriber());
-
         $extension->bootstrap(
             $configuration,
             $facade,
             $parameters
         );
 
+        $this->assertTrue($facade->replacesOutput());
+        $this->assertTrue($facade->replacesProgressOutput());
+        $this->assertTrue($facade->replacesResultOutput());
+
         $this->assertContains('COLLISION_PRINTER_COMPACT', array_keys($_SERVER));
         $this->assertContains('COLLISION_PRINTER_PROFILE', array_keys($_SERVER));
     }
 
-    public function testBootstrapInCompatMode(): void
+    public function testBootstrapInCompactMode(): void
     {
-        $facade = $this->createMock(Facade::class);
+        $facade = new Facade();
         $configuration = (new Builder())->build([]);
         $parameters = ParameterCollection::fromArray([
             'useCompactMode' => 'true',
@@ -76,27 +71,15 @@ class PhpUnitExtensionTest extends TestCase
 
         $extension = new PhpUnitExtension();
 
-        $facade
-            ->expects($this->once())
-            ->method('replaceOutput');
-
-        $facade
-            ->expects($this->once())
-            ->method('replaceProgressOutput');
-
-        $facade
-            ->expects($this->once())
-            ->method('replaceResultOutput');
-
-        $facade
-            ->expects($this->never())
-            ->method('registerSubscriber');
-
         $extension->bootstrap(
             $configuration,
             $facade,
             $parameters
         );
+
+        $this->assertTrue($facade->replacesOutput());
+        $this->assertTrue($facade->replacesProgressOutput());
+        $this->assertTrue($facade->replacesResultOutput());
 
         $this->assertContains('COLLISION_PRINTER_COMPACT', array_keys($_SERVER));
         $this->assertNotContains('COLLISION_PRINTER_PROFILE', array_keys($_SERVER));
@@ -104,7 +87,7 @@ class PhpUnitExtensionTest extends TestCase
 
     public function testBootstrapWithDisplayProfiling(): void
     {
-        $facade = $this->createMock(Facade::class);
+        $facade = new Facade();
         $configuration = (new Builder())->build([]);
         $parameters = ParameterCollection::fromArray([
             'displayProfiling' => 'true',
@@ -112,27 +95,15 @@ class PhpUnitExtensionTest extends TestCase
 
         $extension = new PhpUnitExtension();
 
-        $facade
-            ->expects($this->once())
-            ->method('replaceOutput');
-
-        $facade
-            ->expects($this->once())
-            ->method('replaceProgressOutput');
-
-        $facade
-            ->expects($this->once())
-            ->method('replaceResultOutput');
-
-        $facade
-            ->expects($this->never())
-            ->method('registerSubscriber');
-
         $extension->bootstrap(
             $configuration,
             $facade,
             $parameters
         );
+
+        $this->assertTrue($facade->replacesOutput());
+        $this->assertTrue($facade->replacesProgressOutput());
+        $this->assertTrue($facade->replacesResultOutput());
 
         $this->assertNotContains('COLLISION_PRINTER_COMPACT', array_keys($_SERVER));
         $this->assertContains('COLLISION_PRINTER_PROFILE', array_keys($_SERVER));
@@ -140,7 +111,7 @@ class PhpUnitExtensionTest extends TestCase
 
     public function testBootstrapWithDisplayQuote(): void
     {
-        $facade = $this->createMock(Facade::class);
+        $facade = new Facade();
         $configuration = (new Builder())->build([]);
         $parameters = ParameterCollection::fromArray([
             'displayQuote' => 'true',
@@ -148,28 +119,15 @@ class PhpUnitExtensionTest extends TestCase
 
         $extension = new PhpUnitExtension();
 
-        $facade
-            ->expects($this->once())
-            ->method('replaceOutput');
-
-        $facade
-            ->expects($this->once())
-            ->method('replaceProgressOutput');
-
-        $facade
-            ->expects($this->once())
-            ->method('replaceResultOutput');
-
-        $facade
-            ->expects($this->once())
-            ->method('registerSubscriber')
-            ->with(new ApplicationFinishedSubscriber());
-
         $extension->bootstrap(
             $configuration,
             $facade,
             $parameters
         );
+
+        $this->assertTrue($facade->replacesOutput());
+        $this->assertTrue($facade->replacesProgressOutput());
+        $this->assertTrue($facade->replacesResultOutput());
 
         $this->assertNotContains('COLLISION_PRINTER_COMPACT', array_keys($_SERVER));
         $this->assertNotContains('COLLISION_PRINTER_PROFILE', array_keys($_SERVER));
@@ -177,7 +135,7 @@ class PhpUnitExtensionTest extends TestCase
 
     public function testItShouldBeEnabledThroughCli(): void
     {
-        $facade = $this->createMock(Facade::class);
+        $facade = new Facade();
         $configuration = (new Builder())->build([]);
         $parameters = ParameterCollection::fromArray([
             'displayProfiling' => 'true',
@@ -188,23 +146,6 @@ class PhpUnitExtensionTest extends TestCase
 
         $extension = new PhpUnitExtension();
 
-        $facade
-            ->expects($this->once())
-            ->method('replaceOutput');
-
-        $facade
-            ->expects($this->once())
-            ->method('replaceProgressOutput');
-
-        $facade
-            ->expects($this->once())
-            ->method('replaceResultOutput');
-
-        $facade
-            ->expects($this->once())
-            ->method('registerSubscriber')
-            ->with(new ApplicationFinishedSubscriber());
-
         $_SERVER['argv'][] = '--enable-pretty-print';
 
         $extension->bootstrap(
@@ -213,13 +154,17 @@ class PhpUnitExtensionTest extends TestCase
             $parameters
         );
 
+        $this->assertTrue($facade->replacesOutput());
+        $this->assertTrue($facade->replacesProgressOutput());
+        $this->assertTrue($facade->replacesResultOutput());
+
         $this->assertContains('COLLISION_PRINTER_COMPACT', array_keys($_SERVER));
         $this->assertContains('COLLISION_PRINTER_PROFILE', array_keys($_SERVER));
     }
 
     public function testItShouldBeDisabledThroughCli(): void
     {
-        $facade = $this->createMock(Facade::class);
+        $facade = new Facade();
         $configuration = (new Builder())->build([]);
         $parameters = ParameterCollection::fromArray([
             'displayProfiling' => 'true',
@@ -229,23 +174,6 @@ class PhpUnitExtensionTest extends TestCase
 
         $extension = new PhpUnitExtension();
 
-        $facade
-            ->expects($this->never())
-            ->method('replaceOutput');
-
-        $facade
-            ->expects($this->never())
-            ->method('replaceProgressOutput');
-
-        $facade
-            ->expects($this->never())
-            ->method('replaceResultOutput');
-
-        $facade
-            ->expects($this->never())
-            ->method('registerSubscriber')
-            ->with(new ApplicationFinishedSubscriber());
-
         $_SERVER['argv'][] = '--disable-pretty-print';
 
         $extension->bootstrap(
@@ -254,13 +182,17 @@ class PhpUnitExtensionTest extends TestCase
             $parameters
         );
 
+        $this->assertFalse($facade->replacesOutput());
+        $this->assertFalse($facade->replacesProgressOutput());
+        $this->assertFalse($facade->replacesResultOutput());
+
         $this->assertNotContains('COLLISION_PRINTER_COMPACT', array_keys($_SERVER));
         $this->assertNotContains('COLLISION_PRINTER_PROFILE', array_keys($_SERVER));
     }
 
     public function testItShouldBeEnabledWithParameter(): void
     {
-        $facade = $this->createMock(Facade::class);
+        $facade = new Facade();
         $configuration = (new Builder())->build([]);
         $parameters = ParameterCollection::fromArray([
             'displayProfiling' => 'true',
@@ -271,28 +203,15 @@ class PhpUnitExtensionTest extends TestCase
 
         $extension = new PhpUnitExtension();
 
-        $facade
-            ->expects($this->once())
-            ->method('replaceOutput');
-
-        $facade
-            ->expects($this->once())
-            ->method('replaceProgressOutput');
-
-        $facade
-            ->expects($this->once())
-            ->method('replaceResultOutput');
-
-        $facade
-            ->expects($this->once())
-            ->method('registerSubscriber')
-            ->with(new ApplicationFinishedSubscriber());
-
         $extension->bootstrap(
             $configuration,
             $facade,
             $parameters
         );
+
+        $this->assertTrue($facade->replacesOutput());
+        $this->assertTrue($facade->replacesProgressOutput());
+        $this->assertTrue($facade->replacesResultOutput());
 
         $this->assertContains('COLLISION_PRINTER_COMPACT', array_keys($_SERVER));
         $this->assertContains('COLLISION_PRINTER_PROFILE', array_keys($_SERVER));
@@ -300,7 +219,7 @@ class PhpUnitExtensionTest extends TestCase
 
     public function testItShouldBeDisabledWithParameter(): void
     {
-        $facade = $this->createMock(Facade::class);
+        $facade = new Facade();
         $configuration = (new Builder())->build([]);
         $parameters = ParameterCollection::fromArray([
             'displayProfiling' => 'true',
@@ -311,28 +230,15 @@ class PhpUnitExtensionTest extends TestCase
 
         $extension = new PhpUnitExtension();
 
-        $facade
-            ->expects($this->never())
-            ->method('replaceOutput');
-
-        $facade
-            ->expects($this->never())
-            ->method('replaceProgressOutput');
-
-        $facade
-            ->expects($this->never())
-            ->method('replaceResultOutput');
-
-        $facade
-            ->expects($this->never())
-            ->method('registerSubscriber')
-            ->with(new ApplicationFinishedSubscriber());
-
         $extension->bootstrap(
             $configuration,
             $facade,
             $parameters
         );
+
+        $this->assertFalse($facade->replacesOutput());
+        $this->assertFalse($facade->replacesProgressOutput());
+        $this->assertFalse($facade->replacesResultOutput());
 
         $this->assertNotContains('COLLISION_PRINTER_COMPACT', array_keys($_SERVER));
         $this->assertNotContains('COLLISION_PRINTER_PROFILE', array_keys($_SERVER));

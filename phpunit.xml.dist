@@ -6,13 +6,7 @@
          colors="true"
          defaultTestSuite="unit"
          cacheDirectory=".phpunit.cache"
-         displayDetailsOnTestsThatTriggerWarnings="true"
-         bootstrap="tests/bootstrap.php">
-  <extensions>
-    <bootstrap class="RobinIngelbrecht\PHPUnitPrettyPrint\PhpUnitExtension">
-
-    </bootstrap>
-  </extensions>
+         displayDetailsOnTestsThatTriggerWarnings="true">
   <testsuites>
     <testsuite name="unit">
       <file>tests/OutputTest.php</file>

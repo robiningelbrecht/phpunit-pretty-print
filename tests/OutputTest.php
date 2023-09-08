@@ -30,6 +30,8 @@ class OutputTest extends TestCase
 
         exec(implode(' ', $command), $out);
         $output = implode(PHP_EOL, $out);
+
+        $this->assertMatchesRegularExpression('/Runtime: PHPUnit [\s\S]+ using PHP [\s\S]+ on [\s\S]+/', $output);
         $this->assertStringContainsString('Tests:    2 passed (4 assertions)', $output);
         $this->assertStringContainsString('Top 10 slowest tests', $output);
     }
@@ -44,6 +46,8 @@ class OutputTest extends TestCase
         ];
         exec(implode(' ', $command), $out);
         $output = implode(PHP_EOL, $out);
+
+        $this->assertMatchesRegularExpression('/Runtime: PHPUnit [\s\S]+ using PHP [\s\S]+ on [\s\S]+/', $output);
         $this->assertStringContainsString('Tests:    2 passed (4 assertions)', $output);
         $this->assertStringContainsString('Top 10 slowest tests', $output);
     }
@@ -57,6 +61,8 @@ class OutputTest extends TestCase
 
         exec(implode(' ', $command), $out);
         $output = implode(PHP_EOL, $out);
+
+        $this->assertMatchesRegularExpression('/Runtime: PHPUnit [\s\S]+ using PHP [\s\S]+ on [\s\S]+/', $output);
         $this->assertStringContainsString('.⨯⨯⨯!si..', $output);
         $this->assertStringContainsString('Tests:    3 failed, 1 risky, 1 incomplete, 1 skipped, 3 passed (7 assertions)', $output);
     }
@@ -70,6 +76,8 @@ class OutputTest extends TestCase
         ];
         exec(implode(' ', $command), $out);
         $output = implode(PHP_EOL, $out);
+
+        $this->assertMatchesRegularExpression('/Runtime: PHPUnit [\s\S]+ using PHP [\s\S]+ on [\s\S]+/', $output);
         $this->assertStringContainsString('.⨯⨯⨯!si..', $output);
         $this->assertStringContainsString('Tests:    3 failed, 1 risky, 1 incomplete, 1 skipped, 3 passed (7 assertions)', $output);
     }
@@ -137,6 +145,8 @@ class OutputTest extends TestCase
         ];
         exec(implode(' ', $command), $out);
         $output = implode(PHP_EOL, $out);
+
+        $this->assertMatchesRegularExpression('/Runtime: PHPUnit [\s\S]+ using PHP [\s\S]+ on [\s\S]+/', $output);
         $this->assertStringContainsString('Tests:    2 passed (4 assertions)', $output);
     }
 
@@ -149,6 +159,8 @@ class OutputTest extends TestCase
         ];
         exec(implode(' ', $command), $out);
         $output = implode(PHP_EOL, $out);
+
+        $this->assertDoesNotMatchRegularExpression('/Runtime: PHPUnit [\s\S]+ using PHP [\s\S]+ on [\s\S]+/', $output);
         $this->assertStringContainsString('OK (2 tests, 4 assertions)', $output);
     }
 }
