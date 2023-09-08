@@ -8,6 +8,7 @@ use PHPUnit\Runner\Extension\Facade;
 use PHPUnit\Runner\Extension\ParameterCollection;
 use PHPUnit\TextUI\Configuration\Configuration as PHPUnitConfiguration;
 use RobinIngelbrecht\PHPUnitPrettyPrint\Subscriber\Application\ApplicationFinishedSubscriber;
+use RobinIngelbrecht\PHPUnitPrettyPrint\Subscriber\Application\ApplicationStartedSubscriber;
 
 final class PhpUnitExtension implements Extension
 {
@@ -33,6 +34,7 @@ final class PhpUnitExtension implements Extension
 
         EnsurePrinterIsRegisteredSubscriber::register();
 
+        $facade->registerSubscriber(new ApplicationStartedSubscriber());
         if (!$configuration->displayQuote()) {
             return;
         }
