@@ -6,6 +6,9 @@ jobs:
   test-suite:
     name: PHPStan, PHPcs & Testsuite
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        phpunit-versions: [ '10.3', '11.0' ]
 
     steps:
       # https://github.com/marketplace/actions/setup-php-action
@@ -21,6 +24,11 @@ jobs:
 
       - name: Install dependencies
         run: composer install --prefer-dist
+
+      - name: Install PHPUnit ${{ matrix.phpunit-versions }}
+        run: |
+          rm composer.lock
+          composer require phpunit/phpunit ^${{ matrix.phpunit-versions }}
 
       - name: Run PHPStan
         run: vendor/bin/phpstan analyse
