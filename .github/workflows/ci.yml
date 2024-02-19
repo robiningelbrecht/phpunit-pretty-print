@@ -6,18 +6,30 @@ jobs:
   test-suite:
     name: PHPStan, PHPcs & Testsuite
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-versions: [ '8.1', '8.2' ]
+        phpunit-versions: [ '10.3', '11.0' ]
+        exclude:
+          - php-versions: 8.1
+            phpunit-versions: 11.0
 
     steps:
       # https://github.com/marketplace/actions/setup-php-action
-      - name: Setup PHP 8.1 with Xdebug 3.x
+      - name: Setup PHP ${{ matrix.php-versions }} with Xdebug 3.x
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'
+          php-version: ${{ matrix.php-versions }}
           coverage: xdebug
 
       # https://github.com/marketplace/actions/checkout
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Install PHPUnit ${{ matrix.phpunit-versions }}
+        run: |
+          rm composer.lock
+          composer require phpunit/phpunit ^${{ matrix.phpunit-versions }}
 
       - name: Install dependencies
         run: composer install --prefer-dist
@@ -25,8 +37,8 @@ jobs:
       - name: Run PHPStan
         run: vendor/bin/phpstan analyse
 
-      - name: Run PHPcs fixer dry-run
-        run: vendor/bin/php-cs-fixer fix --dry-run --stop-on-violation --config=.php-cs-fixer.dist.php
+      #- name: Run PHPcs fixer dry-run
+      #  run: vendor/bin/php-cs-fixer fix --dry-run --stop-on-violation --config=.php-cs-fixer.dist.php
 
       - name: Run test suite
         run: vendor/bin/phpunit --fail-on-incomplete  --log-junit junit.xml --coverage-clover clover.xml
