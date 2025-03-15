@@ -42,11 +42,3 @@ jobs:
 
       - name: Run test suite
         run: vendor/bin/phpunit --fail-on-incomplete  --log-junit junit.xml --coverage-clover clover.xml
-
-      # https://github.com/marketplace/actions/codecov
-      - name: Send test coverage to codecov.io
-        uses: codecov/codecov-action@v3
-        with:
-          files: clover.xml
-          fail_ci_if_error: true # optional (default = false)
-          verbose: true # optional (default = false)
