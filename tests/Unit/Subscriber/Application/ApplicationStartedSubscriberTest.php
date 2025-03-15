@@ -33,7 +33,7 @@ class ApplicationStartedSubscriberTest extends TestCase
                     HRTime::fromSecondsAndNanoseconds(1, 0),
                     MemoryUsage::fromBytes(100),
                     MemoryUsage::fromBytes(100),
-                    new GarbageCollectorStatus(0, 0, 0, 0, null, null, null, null, null, null, null, null)
+                    new GarbageCollectorStatus(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
                 ),
                 Duration::fromSecondsAndNanoseconds(1, 0),
                 MemoryUsage::fromBytes(100),

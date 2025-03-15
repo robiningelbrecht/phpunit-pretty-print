@@ -1,0 +1,10 @@
+services:
+  php-cli:
+    build: ./docker/php-cli
+    container_name: phpunit-pretty-print-php-cli
+    environment:
+      - PHP_CS_FIXER_IGNORE_ENV=true
+    volumes:
+      - ./:/var/www/
+    working_dir: /var/www
+
