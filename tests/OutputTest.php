@@ -18,7 +18,9 @@ class OutputTest extends TestCase
         ];
 
         exec(implode(' ', $command), $out);
-        $this->assertStringContainsString('Tests:    3 failed, 1 risky, 1 incomplete, 1 skipped, 3 passed (7 assertions)', implode(PHP_EOL, $out));
+        $output = implode(PHP_EOL, $out);
+        $this->assertStringContainsString('Tests:    3 failed, 1 risky, 1 incomplete, 1 skipped, 3 passed (7 assertions)', $output);
+        $this->assertStringNotContainsString('Random Seed:', $output);
     }
 
     public function testWithProfiling(): void
@@ -133,6 +135,20 @@ class OutputTest extends TestCase
         if (!$printContainsQuote) {
             $this->fail('Quote not found');
         }
+    }
+
+    public function testPrintWithRandomSeed(): void
+    {
+        $command = [
+            'vendor/bin/phpunit',
+            '--configuration=tests/phpunit.test.xml',
+            '--order-by=random',
+        ];
+
+        exec(implode(' ', $command), $out);
+        $output = implode(PHP_EOL, $out);
+        $this->assertStringContainsString('Tests:    3 failed, 1 risky, 1 incomplete, 1 skipped, 3 passed (7 assertions)', $output);
+        $this->assertStringContainsString('Random Seed:', $output);
     }
 
     public function testItShouldBeEnabled(): void
