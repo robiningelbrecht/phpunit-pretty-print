@@ -6,6 +6,7 @@ use NunoMaduro\Collision\Adapters\Phpunit\Subscribers\EnsurePrinterIsRegisteredS
 use PHPUnit\Runner\Extension\Extension;
 use PHPUnit\Runner\Extension\Facade;
 use PHPUnit\Runner\Extension\ParameterCollection;
+use PHPUnit\Runner\TestSuiteSorter;
 use PHPUnit\TextUI\Configuration\Configuration as PHPUnitConfiguration;
 use RobinIngelbrecht\PHPUnitPrettyPrint\Subscriber\Application\ApplicationFinishedSubscriber;
 use RobinIngelbrecht\PHPUnitPrettyPrint\Subscriber\Application\ApplicationStartedSubscriber;
@@ -18,6 +19,7 @@ final class PhpUnitExtension implements Extension
             return;
         }
 
+        $_SERVER['PHPUNIT_RANDOM_ORDER_SEED'] = TestSuiteSorter::ORDER_RANDOMIZED === $configuration->executionOrder() ? $configuration->randomOrderSeed() : null;
         $configuration = Configuration::fromParameterCollection($parameters);
 
         $facade->replaceOutput();
