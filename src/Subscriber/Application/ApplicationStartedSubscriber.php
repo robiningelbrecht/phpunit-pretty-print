@@ -16,5 +16,11 @@ class ApplicationStartedSubscriber implements StartedSubscriber
             '<div>&nbsp;&nbsp;Runtime: %s</div>',
             $event->runtime()->asString()
         ));
+        if (!empty($_SERVER['PHPUNIT_RANDOM_ORDER_SEED'])) {
+            render(sprintf(
+                '<div>&nbsp;&nbsp;Random Seed: %s</div>',
+                $_SERVER['PHPUNIT_RANDOM_ORDER_SEED']
+            ));
+        }
     }
 }

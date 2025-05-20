@@ -36,9 +36,5 @@
   },
   "config": {
     "sort-packages": true
-  },
-  "scripts": {
-    "lint:fix": " ./vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php",
-    "phpunit:test": "vendor/bin/phpunit --configuration=tests/phpunit.test.xml"
   }
 }
