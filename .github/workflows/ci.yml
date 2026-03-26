@@ -8,8 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-versions: [ '8.1', '8.2' ]
-        phpunit-versions: [ '10.3', '11.0', '12.0', '13.0' ]
+        php-versions: [ '8.1', '8.2', '8.3', '8.4' ]
         exclude:
           - php-versions: 8.1
             phpunit-versions: 11.0
@@ -29,7 +28,6 @@ jobs:
       - name: Install PHPUnit ${{ matrix.phpunit-versions }}
         run: |
           rm composer.lock
-          composer require phpunit/phpunit ^${{ matrix.phpunit-versions }}
 
       - name: Install dependencies
         run: composer install --prefer-dist
